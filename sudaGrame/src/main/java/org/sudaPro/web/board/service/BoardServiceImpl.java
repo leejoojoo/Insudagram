@@ -10,6 +10,7 @@ import org.sudaPro.web.board.vo.BoardAll;
 import org.sudaPro.web.board.vo.BoardOne;
 import org.sudaPro.web.board.vo.ChildComm;
 import org.sudaPro.web.board.vo.Comments;
+import org.sudaPro.web.board.vo.Gooder;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -53,6 +54,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int insertComm(String content, int cm_group, int b_code, int m_code, String pm_id) {
 		return this.boardDao.insertComm(content, cm_group, b_code, m_code, pm_id);
+	}
+
+	@Override
+	public List<Gooder> getGoodList(int b_code) {
+		return this.boardDao.getGoodList(b_code);
 	}
 	
 }

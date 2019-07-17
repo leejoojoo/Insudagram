@@ -12,6 +12,7 @@ import org.sudaPro.web.board.vo.BoardAll;
 import org.sudaPro.web.board.vo.BoardOne;
 import org.sudaPro.web.board.vo.ChildComm;
 import org.sudaPro.web.board.vo.Comments;
+import org.sudaPro.web.board.vo.Gooder;
 
 @Repository
 public class BoardDaoImpl implements BoardDao{
@@ -57,5 +58,9 @@ public class BoardDaoImpl implements BoardDao{
 		parames.put("m_code", m_code);
 		parames.put("pm_id", pm_id);
 		return session.insert(namespace+".insertComm", parames);
+	}
+	@Override
+	public List<Gooder> getGoodList(int b_code) {
+		return session.selectList(namespace + ".goodList", b_code);
 	}
 }

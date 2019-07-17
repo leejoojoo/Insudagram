@@ -52,4 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertComm" parameterType="java.util.Map">
 		insert into comm values(seq_comm.nextval, #{ content }, sysdate, #{ cm_group }, #{ b_code }, #{ m_code }, #{ pm_id })
 	</insert>
+	<select id="goodList" resultType="org.sudaPro.web.board.vo.Gooder">
+		select distinct m.m_id, m.m_picture, m.m_introduction, nvl(f_cnt, 0) f_cnt
+		from good g join member m on g.m_code = m.m_code
+            left join (select m_code2, count(f_code) f_cnt
+                      from follow
+                      group by m_code2) f on f.m_code2 = #{ b_code }
+		where b_code = #{ b_code }
+	</select>
 </mapper>

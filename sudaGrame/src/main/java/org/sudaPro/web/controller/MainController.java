@@ -8,7 +8,6 @@ import org.sudaPro.web.test.dao.TestDao;
 
 @Controller
 public class MainController {
-	// 테스트용 dao(마이 바티스 test)
 	@Autowired
 	private TestDao dao;
 	
