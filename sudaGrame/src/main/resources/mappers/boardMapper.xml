@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.suda.mapper.BoardMapper">
+	<select id="boardAll" resultType="org.sudaPro.web.board.vo.BoardAll" parameterType="java.lang.String">
+		select b.b_code, i.img_img, img_cnt, nvl(g_cnt, 0) g_cnt, nvl(cm_cnt, 0) cm_cnt
+		from(select b.b_code, min(img_code) img_code
+		from board b join img i on b.b_code = i.b_code
+		group by b.b_code
+		)b join img i on b.img_code = i.img_code
+   		 join (select distinct b.b_code, count(img_code) img_cnt
+    	from board b join img i on b.b_code = i.b_code
+    	group by b.b_code) im on b.b_code = im.b_code
+      left join (select count(g_code) g_cnt, b_code
+      from good
+      group by b_code) g on g.b_code = b.b_code
+      left join (select count(cm_code) cm_cnt, b_code
+      from comm
+      group by b_code) c on c.b_code = b.b_code
+		order by ${value} 
+	</select>
+	<select id="boardImg" resultType="java.lang.String">
+		select img_img
+		from img
+		where b_code = #{b_code}	
+	</select>
+	<select id="boardComments" resultType="org.sudaPro.web.board.vo.Comments">
+		select c.cm_content, c.cm_date, m.m_id, c.cm_code, pm_id, m_picture
+		from comm c join member m on c.m_code = m.m_code
+		where c.b_code = #{ b_code } and c.cm_group = 0
+		order by c.cm_group, c.cm_date
+	</select>
+	<select id="boardOne" resultType="org.sudaPro.web.board.vo.BoardOne">
+		select m.m_id, b_content, m.m_name, b.b_regdate, g_cnt, m_picture
+		from board b join member m on b.m_code = m.m_code
+		, (select count(g_code) g_cnt from good where b_code = #{ b_code })
+		where b_code = #{ b_code }
+	</select>
+	<select id="childComment" resultType="org.sudaPro.web.board.vo.ChildComm">
+		select cm_content, cm_date, m.m_id, m.m_picture, pm_id
+		from comm c join member m on c.m_code = m.m_code
+		where cm_group = #{ cm_group }
+		order by cm_date
+	</select>
+	<select id="countChildComm" resultType="java.lang.Integer">
+		select count(cm_code) cnt_child
+		from comm
+		where cm_group > 0 and b_code = #{b_code} and cm_group = #{cm_group}
+	</select>
+	<insert id="insertComm" parameterType="java.util.Map">
+		insert into comm values(seq_comm.nextval, #{ content }, sysdate, #{ cm_group }, #{ b_code }, #{ m_code }, #{ pm_id })
+	</insert>
+</mapper>

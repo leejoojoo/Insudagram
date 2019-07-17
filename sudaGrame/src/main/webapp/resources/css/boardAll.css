@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.model{
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		
+		font-weight: 600;
+		
+		display: none;
+	}
+	pre{
+		color: white;
+		overflow: visible;
+	}
+	.board_info{
+		margin-top: 50%;
+		margin-left: 50%;
+		transform: translate(-35%);
+	}
+	.heart, .comm_cnt{
+		background-image: url("../img/4f48d3d2062b.png");
+		background-repeat:no-repeat;
+		background-position:0 -100;
+		width: 100px;
+		height: 100px;
+	}
