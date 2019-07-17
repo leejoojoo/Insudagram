@@ -9,6 +9,7 @@ import org.sudaPro.web.board.service.BoardService;
 import org.sudaPro.web.board.vo.BoardAll;
 import org.sudaPro.web.board.vo.ChildComm;
 import org.sudaPro.web.board.vo.Comments;
+import org.sudaPro.web.board.vo.Gooder;
 
 
 @RestController
@@ -38,5 +39,10 @@ public class BoardAjaxController {
 	@RequestMapping("printComm")
 	public List<Comments> printComm(int b_code){
 		return this.boardService.getComments(b_code);
+	}
+	
+	@RequestMapping("goodList")
+	public List<Gooder> goodList(int b_code){
+		return this.boardService.getGoodList(b_code);
 	}
 }
