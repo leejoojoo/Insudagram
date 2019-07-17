@@ -59,8 +59,8 @@
 					</div>
 					<div class="eo2As ">
 						<section class="ltpMr Slqrh">
-							<span class="fr66n"><button class="dCJp8 afkep _0mzm-">
-									<span class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
+							<span class="fr66n"><button class="dCJp8 afkep _0mzm- heart_button">
+									<span id="heart1" class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
 										aria-label="좋아요"></span>
 								</button></span><span class="_15y0l"><button class="dCJp8 afkep _0mzm-">
 									<span class="glyphsSpriteComment__outline__24__grey_9 u-__7"
@@ -164,7 +164,7 @@
 					<div class="eo2As ">
 						<section class="ltpMr Slqrh">
 							<span class="fr66n"><button class="dCJp8 afkep _0mzm-">
-									<span class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
+									<span id="heart" class="glyphsSpriteHeart__filled__24__red_5 u-__7"
 										aria-label="좋아요"></span>
 								</button></span><span class="_15y0l"><button class="dCJp8 afkep _0mzm-">
 									<span class="glyphsSpriteComment__outline__24__grey_9 u-__7"
@@ -878,3 +878,40 @@
 </section>
 <div class="vgS-T"></div>
 </main>
+
+<script>
+$(".heart_button").click(function(){
+	var condition = $(this).children().is(".glyphsSpriteHeart__outline__24__grey_9 u-__7");
+
+	if (condition == true) {
+	$('#heart1').removeClass('glyphsSpriteHeart__outline__24__grey_9 u-__7').addClass('glyphsSpriteHeart__filled__24__red_5 u-__7');
+	$.ajax({
+		 url : 'fillHeart',
+           type : 'POST',
+           data : {
+           	b_code:1
+           	},
+           dataType : "json",
+           success : function(data) {
+        	   alert("좋아요추가")
+           	}
+	 }); 
+	}else if(condition == false){
+		$('#heart1').removeClass('glyphsSpriteHeart__filled__24__red_5 u-__7').addClass('glyphsSpriteHeart__outline__24__grey_9 u-__7');	
+		$.ajax({
+			 url : 'outLineHeart',
+	            type : 'POST',
+	            data : {
+	               	b_code:1,
+	            	},
+	            dataType : "json",
+	            success : function(data) {
+	            	alert("좋아요삭제")
+	            }
+		 }); 
+	}
+
+	
+});
+
+</script>
