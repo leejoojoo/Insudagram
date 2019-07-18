@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.suda.mapper.MypageMapper">
+
+	<select id="getIDAndProfilePicture" resultType="org.sudaPro.web.myPage.vo.MypageVO">
+		select m_id, m_picture, m_website from member where m_code = #{ m_code }
+	</select>
+
+	<select id="getNumberOfPost" resultType="java.lang.Integer">
+		select count(b_code) from board where m_code = #{m_code}
+	</select>
+	
+	<select id="getNumberOfFollower" resultType="java.lang.Integer">
+		select count(f_code) from follow where m_code = #{m_code}
+	</select>
+	
+	<select id="getNumberOfMyFollowing" resultType="java.lang.Integer">
+		select count(f_code) from follow where m_code2 = #{m_code}
+	</select>
+	
+	<select id="getImage" resultType="org.sudaPro.web.myPage.vo.MypageVO">
+		select b.m_code, b.b_code, i.img_img
+		from board b join img i on b.b_code = i.b_code
+              join (select b_code, min(img_code) img_code
+                    from img
+                    group by b_code) im on b.b_code = im.b_code and im.img_code = i.img_code
+		where m_code = #{ m_code }
+		order by b_code desc
+	</select>
+	
+</mapper>
+

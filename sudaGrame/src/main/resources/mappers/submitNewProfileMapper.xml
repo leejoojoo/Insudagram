@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.suda.mapper.SubmitNewProfileMapper">
+
+	<update id="updateMyPage" parameterType="org.sudaPro.web.myPage.vo.MypageVO"   >
+	
+	<!-- 
+		update member set m_name = #{m_name}, m_id = #{m_id}, m_website = #{m_website}, 
+		m_introduction = #{m_introduction}, m_email = #{m_email}, m_phone = #{m_phone} 
+		where m_code = #{m_code}  
+		 -->
+		 
+		 <!-- 
+		update member
+		<trim prefix="SET" suffixOverrides=",">
+		<if test="m_name != null">m_name = #{m_name},</if> 
+		<if test="m_id != null">m_id = #{m_id},</if> 
+		<if test="m_website != null">m_website = #{m_website},</if> 
+		<if test="m_introduction != null">m_introduction = #{m_introduction},</if> 
+		<if test="m_email != null">m_email = #{m_email},</if> 
+		<if test="m_phone != null">m_phone = #{m_phone},</if>
+		</trim>  
+		where m_code = #{m_code}
+		 -->
+		 
+		 update member
+		
+		<set>
+			<if test="m_name != null">m_name = #{m_name},</if> 
+			<if test="m_id != null">m_id = #{m_id},</if> 
+			<if test="m_website != null">m_website = #{m_website},</if> 
+			<if test="m_introduction != null">m_introduction = #{m_introduction},</if> 
+			<if test="m_email != null">m_email = #{m_email},</if> 
+			<if test="m_phone != null">m_phone = #{m_phone}</if>
+		</set>
+	
+		where m_code = #{m_code}
+				 
+	</update>
+	
+</mapper>
