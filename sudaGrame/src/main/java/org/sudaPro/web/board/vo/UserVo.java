@@ -54,13 +54,4 @@ public class UserVo {
 		this.passWord = passWord;
 	}
 	
-	
-	
-
-
-	
-	
-	
-	
-
 }
