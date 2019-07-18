@@ -29,7 +29,7 @@
 	</beans:bean>
 	
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:/Users/SIST167/git/SudaGram/sudaGrame/src/main/webapp"></beans:constructor-arg>
+		<beans:constructor-arg value="C:/Users/SIST167/git/insudaGram/sudaGrame/src/main/webapp"></beans:constructor-arg>
 	</beans:bean>	
 </beans:beans>
 

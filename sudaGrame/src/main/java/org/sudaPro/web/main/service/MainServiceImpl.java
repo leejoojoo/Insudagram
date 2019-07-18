@@ -96,8 +96,15 @@ public class MainServiceImpl implements MainService{
 		return this.mainDao.setWriteBoard(realPath,originName,b_content);
 	}
 
-	public int setDeleteBoard(String b_code) {
+	public int setDeleteBoard(String realPath, String b_code, MultipartFile[] multipartFile) throws IOException {
 		System.out.println("service hiiiiiiii");
+		String originName[] = new String[multipartFile.length];
+		for (int i = 0; i < multipartFile.length; i++) {
+			originName[i] = multipartFile[i].getOriginalFilename();
+			byte[]bytes=multipartFile[i].getBytes();
+			File files = new File(realPath,originName[i]);
+			files.delete();
+		}
 		return this.mainDao.setDeleteBoard(b_code);
 	}
 

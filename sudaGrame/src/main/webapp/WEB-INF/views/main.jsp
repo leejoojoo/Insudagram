@@ -21,7 +21,24 @@ $(document).ready(function() {
 	
 	//게시물 수정,삭제
 	$('.editDel').click(function(){
+		
 		var b_code = $(this).val();
+		var img_img1 = $('div[class=_97aPb'+b_code+']').attr('name')	;
+		var img_img2 = $('div[class=_97aPb'+b_code+']').attr('name');
+		alert(b_code);
+		alert(img_img1);
+		alert(img_img2);
+		
+		   var formData = new FormData();
+		   formData.append("b_code",b_code);
+		   
+ 		   for (var i = 0; i < $('div[class=_97aPb'+b_code+']').length ; i++) {
+//  			alert($('div[class=_97aPb'+b_code+']')[i].attr('value'));
+		 	  	formData.append("deleteGallery",$('div[class=_97aPb'+b_code+']')[i].attr('value'));
+				alert(document.getElementsByClassName('_97aPb'+b_code+'')[i].attr('value'));
+ 		   }
+		
+		
 		
 		$('#editDel_board_Modal').modal("show");
 		
@@ -33,57 +50,44 @@ $(document).ready(function() {
 		            data:{b_code:b_code},
 		            cache: false,
 		            success: function (data) {
-		            	$(data).each(function(index, i){
-// 		            		console.log("b_content: " + i.b_content);
+						$('#edit_board_Modal').modal("show");
+						$(data).each(function(index, i){
+							$(i.mainImg).each(function(index, x){
+								console.log("img: " + x.img_img);
+							});
+							alert(i.b_content);
+// 							$('#b_content').attr('val',i.b_content);
+							$('textarea[id=b_content]').val(i.b_content);
 							
-// 		            		thtml='<label><b>내용</b></label>                                                                                                                                ';
-// 							thtml+='<textarea name="b_content" id="b_content" class="form-control"></textarea>                                                                             ';
-// 							thtml+='<br/>                                                                                                                                                  ';
-// 							thtml+='<a id="galleryPlus" style="float: right; margin: 15px; ">+사진 추가</a>                                                                                    ';
-// 							thtml+='<br>                                                                                                                                                   ';
-// 							thtml+='<input type="file" id="writeGallery" class="writeGallery" name="writeGallery" style="border: none;"/>                                                  ';
-// 							thtml+='<br>                                                                                                                                                   ';
-// 							thtml+='<br>                                                                                                                                                   ';
-// 							thtml+='                                                                                                                                                       ';
-// 							thtml+='	<div class="file_set box_type03 mgt5" style="width:100%; border:solid 1px gray; padding:5px;" tabindex="0">                                        ';
-// 							thtml+='	<ul>                                                                                                                                               ';
-// 							thtml+='	<c:forEach items="${main.mainImg}" var="imgs" varStatus="status">                                                                                  ';
-// 							thtml+='		<li><label><input type="checkbox" name="${imgs.img_img}" title="파일명" />'+i.img_img+'</label></li>                                            ';
-// 							thtml+='	</c:forEach>                                                                                                                                       ';
-// 							thtml+='	</ul>                                                                                                                                              ';
-// 							thtml+='	</div>                                                                                                                                             ';
-// 							thtml+='                                                                                                                                                       ';
-// 							thtml+='<br>                                                                                                                                                   ';
-// 							thtml+='<input type="submit" name ="insert" id="insert" value="수정" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>';
-// 							thtml+='<input type="submit" name ="insert" id="insert" value="삭제" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>';
+							
+							$('div[name=editImg]').html('<ul><li><label><input type="checkbox" name="'+i.img_img+'" title="파일명" />'+i.img_img+'</label></li></ul>');
+							
+							
+							
+							
+						});
 
-
-		            	});
-		            	
-		            	 // alert(data.editBoard.b_content);
-// 						thtml='';
-// 						$.each(data.list, function(i,item){
-// // 							$('#edit_board_Modal').children('textarea[name=b_content]').text('testtttttttttttttttt');
-// // 		            		$(this).attr('name','show');
-		            	
-		            	
-		                alert("게시물 수정이 완료되었습니다.");
-		                $('#editDel_board_Modal').modal("hide");
 		            },
 		            error: function (e) {
 		                alert("게시물 수정이 실패하였습니다.");
 		            }
 		        });
-			   
-			
 		});
 		
-		$('.delete').click(function(){
+			
+			$('.delete').click(function(){
+			
+			alert(img_img);
+			alert(b_code);
+			
+
 			
 			   $.ajax({
 		            url:"deleteBoard",
 		            type:"POST",
-		            data:{b_code:b_code},
+		            data: formData,
+		            processData: false,
+		            contentType: false,
 		            cache: false,
 		            success: function (data) {
 		                alert("게시물 삭제가 완료되었습니다.");
@@ -93,7 +97,7 @@ $(document).ready(function() {
 		                alert("게시물 삭제가 실패하였습니다.");
 		            }
 		        });
-			   
+			 
 		});
 		
 		
@@ -161,6 +165,7 @@ $(document).ready(function() {
 			  }
 	   
 	});
+	   
 })
 
 </script>
@@ -199,7 +204,7 @@ $(document).ready(function() {
 						</div>
 					</header>
 				<c:forEach items="${main.mainImg}" var="img" varStatus="status">
-					<div class="_97aPb ">
+					<div class="_97aPb${main.b_code}" name="${img.img_img}">
 						<div role="button" tabindex="0" class="ZyFrc">
 							<div class="eLAPa kPFhm">
 								<div class="KL4Bh" style="padding-bottom: 100%;">
@@ -218,12 +223,12 @@ $(document).ready(function() {
 							<span class="fr66n"><button class="dCJp8 afkep _0mzm- heart_button">
 									<span id="heart1" class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
 										aria-label="좋아요"></span>
-								</button></span><span class="_15y0l"><button class="dCJp8 afkep _0mzm-">
+								</button></span><span class="_15y0l"><a href="boardOne?b_code=${ main.b_code }"><button class="dCJp8 afkep _0mzm-">
 									<span class="glyphsSpriteComment__outline__24__grey_9 u-__7"
-										aria-label="댓글 달기"></span>
-								</button></span><span class="wmtNn"><button class="dCJp8 afkep _0mzm-">
+										aria-label="댓글 달기"></a></span>
+								</button></span><span class="wmtNn"><a href="boardOne?b_code=${ main.b_code }"><button class="dCJp8 afkep _0mzm-">
 									<span class="glyphsSpriteSave__outline__24__grey_9 u-__7"
-										aria-label="저장"></span>
+										aria-label="저장"></a></span>
 								</button></span>
 						</section>
 						<section class="EDfFK ygqzn">
@@ -252,9 +257,9 @@ $(document).ready(function() {
 								</div>
 								
 								<li class="lnrre">
-									<button class="Z4IfV _0mzm- sqdOP yWX7d        " type="button">
+									<a href="boardOne?b_code=${ main.b_code }"><button class="Z4IfV _0mzm- sqdOP yWX7d        " type="button">
 										댓글 <span>${main.cm_cnt}</span>개 모두 보기
-									</button>
+									</button></a>
 								</li>
 								<c:forEach items="${main.mainComments}" var="comm" varStatus="status">
 								<div role="button" class="ZyFrc">
@@ -292,9 +297,8 @@ $(document).ready(function() {
 							<div class="RxpZH">
 								<form class="X7cDz" method="POST">
 									<textarea aria-label="댓글 달기..." placeholder="댓글 달기..."
-										class="Ypffh" autocomplete="off" autocorrect="off"></textarea>
-									<button class="_0mzm- sqdOP yWX7d        "
-										type="submit">게시</button>
+										class="Ypffh" autocomplete="off" autocorrect="off" disabled></textarea>
+									<button class="_0mzm- sqdOP yWX7d"><a href="boardOne?b_code=${ main.b_code }">이동</a></button>
 								</form>
 							</div>
 						</section>
@@ -1115,34 +1119,34 @@ $(".heart_button").click(function(){
 							<div class="modal-header" style="text-align: center; background: gray; color:white; padding: 10px;height: 60px;">
 						<h3 style="position:absolute; left:50%; top:50%;margin-left:-45px;margin-top:-10px;">게시물 수정</h3>
 							</div>
-				<!-- 모달 바디 -->
+				모달 바디
 							<div class="modal-body">
 							
-							<form method="post" enctype="multipart/form-data" id="insert_form_gallery">
-							<label><b>내용</b></label>
-							<textarea name="b_content" id="b_content" class="form-control"></textarea>
-							<br/>
-							<a id="galleryPlus" style="float: right; margin: 15px; ">+사진 추가</a>
-							<br>
-							<input type="file" id="writeGallery" class="writeGallery" name="writeGallery" style="border: none;"/>
-							<br>
-							<br>
+							<form method="post" enctype="multipart/form-data" id="edit_form_gallery">
+<!-- 							<label><b>내용</b></label> -->
+<!-- 							<textarea name="b_content" id="b_content" class="form-control"></textarea> -->
+<!-- 							<br/> -->
+<!-- 							<a id="galleryPlus" style="float: right; margin: 15px; ">+사진 추가</a> -->
+<!-- 							<br> -->
+<!-- 							<input type="file" id="editGallery" class="writeGallery" name="writeGallery" style="border: none;"/> -->
+<!-- 							<br> -->
+<!-- 							<br> -->
 							
-								<div class="file_set box_type03 mgt5" style="width:100%; border:solid 1px gray; padding:5px;" tabindex="0">
-								<ul>
-								<c:forEach items="${main.mainImg}" var="imgs" varStatus="status">
-									<li><label><input type="checkbox" name="${imgs.img_img}" title="파일명" />${imgs.img_img}</label></li>
-								</c:forEach>
-								</ul>
-								</div>
+<!-- 								<div class="file_set box_type03 mgt5" name="editImg" style="width:100%; border:solid 1px gray; padding:5px;" tabindex="0"> -->
+<!-- 								<ul> -->
+<%-- 								<c:forEach items="" var="imgs" varStatus="status"> --%>
+<!-- 									<li><label><input type="checkbox" name="" title="파일명" /></label></li> -->
+<%-- 								</c:forEach> --%>
+<!-- 								</ul> -->
+<!-- 								</div> -->
 							
-							<br>
-							<input type="submit" name ="insert" id="insert" value="수정" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>
-							<input type="submit" name ="insert" id="insert" value="삭제" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>
+<!-- 							<br> -->
+<!-- 							<input type="submit" name ="insert" id="insert" value="수정" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/> -->
+<!-- 							<input type="submit" name ="insert" id="insert" value="삭제" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/> -->
 							</form>
 							
 							</div>
-				<!-- 모달 풋터 -->
+				모달 풋터
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
@@ -1200,7 +1204,7 @@ $(".heart_button").click(function(){
 								<h3 style="position:absolute; left:50%; top:50%;margin-left:-17px;margin-top:-10px;">설정</h3>
 							</div>
 							<button style="background-color:white;" type="button" class="btn btn-default edit" data-dismiss="modal">수정</button>
-							<button style="background-color:white;" type="button" class="btn btn-default delete" data-dismiss="modal" value="${main.b_code}">삭제</button>
+							<button style="background-color:white;" type="button" class="btn btn-default delete" data-dismiss="modal">삭제</button>
 							<button style="background-color:white;" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
 					</div>
