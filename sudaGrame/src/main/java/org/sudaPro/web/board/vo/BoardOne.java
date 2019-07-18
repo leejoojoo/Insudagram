@@ -8,7 +8,14 @@ public class BoardOne {
 	private String m_name;
 	private Date b_regdate;
 	private int g_cnt;
+	private int m_g;
 	
+	public int getM_g() {
+		return m_g;
+	}
+	public void setM_g(int m_g) {
+		this.m_g = m_g;
+	}
 	public String getM_id() {
 		return m_id;
 	}

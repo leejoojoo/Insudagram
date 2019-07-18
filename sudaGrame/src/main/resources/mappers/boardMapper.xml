@@ -60,4 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                       group by m_code2) f on f.m_code2 = #{ b_code }
 		where b_code = #{ b_code }
 	</select>
+	<select  id="myGood" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select nvl(count(g_code), 0) m_g
+		from good
+		where b_code = #{ b_code } and m_code = #{ m_code }
+	</select>
 </mapper>

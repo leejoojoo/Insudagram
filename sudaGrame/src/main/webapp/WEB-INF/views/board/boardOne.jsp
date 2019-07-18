@@ -142,15 +142,19 @@
 											li.append(smallDiv);
 											BigDiv.append(li);
 											ul.append(BigDiv);
+											var context = "";
+											console.log("cm_code : " + x.cm_code);
+											if(x.cm_code == group){
+												context = " disabled='disabled' ";
+											}
 											if (x.cnt_child > 0) {
-												li = $("<li><ul class='TCSYW commentArea'><li class='_61Di1'><div class='                  Igw0E     IwRSH      eGOV_     ybXk5    _4EzTm                                                                                                              '><button class='_0mzm- sqdOP yWX7d childBtn' type='button' value='"+x.cm_code+"'><div class='_7mCbS'></div><span class='EizgU'>답글 보기("
+												li = $("<li><ul class='TCSYW commentArea'><li class='_61Di1'><div class='                  Igw0E     IwRSH      eGOV_     ybXk5    _4EzTm                                                                                                              '><button class='_0mzm- sqdOP yWX7d childBtn' type='button' value='"+x.cm_code+"' "+context+"><div class='_7mCbS'></div><span class='EizgU'>답글 보기("
 														+ x.cnt_child
 														+ "개)</span></button></div></li></ul></li>");
 												ul.append(li);
 											}
 											$(".XQXOT").append(ul);
 										});
-						console.log(group);
 						button = $(".cmm" + group).find(".commentArea");
 						childcomm(group, button);
 					},
@@ -285,13 +289,14 @@
 					console.log(index);
 				});
 			});
-
+	var btn = null;
 	$(document).on("click", ".childBtn", function() {
 		// console.log($(this).val())
 		// console.log($(this).parents().parents().parents(".commentArea"));
 		var button = $(this).parents().parents().parents(".commentArea");
-		console.log($(this).val());
+		// console.log($(this).val());
 		childcomm($(this).val(), button);
+		btn = $(this);
 		$(this).attr("disabled", true);
 	});
 
@@ -402,8 +407,14 @@
 			<div class="eo2As ">
 				<section class="ltpMr Slqrh">
 					<span class="fr66n"><button class="dCJp8 afkep _0mzm- heart_button">
+						<c:if test="${ board_one.m_g > 0}">
+							<span id="heart1" class="glyphsSpriteHeart__filled__24__red_5 u-__7"
+								aria-label="좋아요"></span>
+						</c:if>
+						<c:if test="${ board_one.m_g } eq 0">
 							<span id="heart1" class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
 								aria-label="좋아요"></span>
+						</c:if>
 						</button></span><span class="_15y0l"><button class="dCJp8 afkep _0mzm-">
 							<span
 								class="glyphsSpriteComment__outline__24__grey_9 u-__7 commBtn"
@@ -464,7 +475,7 @@
 						</div>
 						<hr />
 						<c:forEach items="${ comments }" var="comm">
-							<ul class="Mr508">
+							<ul class="Mr508 comm${comm.cm_code }">
 								<div role="button" class="ZyFrc">
 									<li class="gElp9 rUo9f" role="menuitem"><div class="P9YgZ">
 											<div class="C7I1f ">
@@ -501,66 +512,23 @@
 											<div class="_4l6NB">
 												<button class="dCJp8 afkep _0mzm-">
 													<span
-														class="glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7"
+														class="glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7 commOption"
 														aria-label="댓글 옵션"></span>
 												</button>
 											</div>
 										</div></li>
 								</div>
-								<li><ul class="TCSYW">
-										<c:if test="${ comm.childComm.size() > 1 }">
+								<li><ul class="TCSYW commentArea">
+										<c:if test="${ comm.cnt_child > 0 }">
 											<li class="_61Di1"><div
 													class="                  Igw0E     IwRSH      eGOV_     ybXk5    _4EzTm                                                                                                              ">
 													<button class="_0mzm- sqdOP yWX7d childBtn type="
 														button" value="${ comm.cm_code }">
 														<div class="_7mCbS"></div>
-														<span class="EizgU">답글 보기(${ comm.childComm.size()}개)</span>
+														<span class="EizgU">답글 보기(${ comm.cnt_child}개)</span>
 													</button>
 												</div></li>
-											<c:forEach items="${ comm.childComm }" var="childComm">
-												<div role="button" class="ZyFrc">
-													<li class="gElp9 rUo9f lDe-V" role="menuitem"><div
-															class="P9YgZ">
-															<div class="C7I1f ">
-																<div class="RR-M-  TKzGu" role="button" tabindex="0">
-																	<canvas class="CfWVH" height="42" width="42"
-																		style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																	<a class="_2dbep qNELH kIKUG" href="/suseilish/"
-																		style="width: 32px; height: 32px;"><img
-																		class="_6q-tv"
-																		src="https://scontent-icn1-1.cdninstagram.com/vp/867ce3af57f66e203c2330a559f57263/5DB6188D/t51.2885-19/s150x150/65771494_2445254209037748_3475011902654906368_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-																		alt="${ childComm.m_id }님의 프로필 사진"></a>
-																</div>
-																<div class="C4VMK">
-																	<h3 class="_6lAjh">
-																		<a class="FPmhX notranslate TlrDj" title="suseilish"
-																			href="대닷글 프로필 보기">${ childComm.m_id }</a>
-																	</h3>
-																	<span><a class="notranslate" href="/simonpovoa/" style="font-weight: 600;">@${ comm.m_id }</a>
-																		${ childComm.cm_content }</span>
-																	<div
-																		class="                  Igw0E     IwRSH      eGOV_         _4EzTm   pjcA_                                                         aGBdT                                                  ">
-																		<div
-																			class="_7UhW9  PIoXz       MMzan   _0PwGv       uL8Hv         ">
-																			<time class="FH9sR Nzb55"
-																				datetime="2019-07-12T06:08:57.000Z"
-																				title="2019년 7월 12일"><fmt:formatDate value="${ childComm.cm_date }"
-																	pattern="YYYY년MM월dd일 HH:mm" /></time>
-																			<button class="FH9sR">답글 달기</button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="_4l6NB">
-																<button class="dCJp8 afkep _0mzm-">
-																	<span
-																		class="glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7"
-																		aria-label="댓글 옵션"></span>
-																</button>
-															</div>
-														</div></li>
-												</div>
-											</c:forEach>
+											<!-- 대댓글들 들어가는 자리 -->
 										</c:if>
 									</ul></li>
 							</ul>
