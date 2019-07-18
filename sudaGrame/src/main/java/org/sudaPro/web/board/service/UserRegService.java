@@ -15,6 +15,7 @@ public class UserRegService{
 
 	@Autowired
 	private SqlSessionTemplate userSqlSessin;
+	@Autowired
 	private UserDaoInterface userDao;
 
 	public ArrayList<Integer> userReg_service(String userEmail, String nickName) throws SQLException {
@@ -66,4 +67,10 @@ public class UserRegService{
 		
 		return count;
 	}
+	
+	public UserVo getUserInfo( String principal ) {
+		// System.out.println(principal);
+		return this.userDao.getUser(principal);
+	}
+
 }

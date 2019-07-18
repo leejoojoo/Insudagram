@@ -9,7 +9,7 @@
    <http use-expressions="true">
      <form-login login-page="/login" 
            authentication-failure-url="/login?login_error"   
-           default-target-url="/boardAll"/> <!-- home 에서 로그인 성공 시 띄울 화면  -->
+           default-target-url="/"/> <!-- home 에서 로그인 성공 시 띄울 화면  -->
        <logout logout-success-url="/login"/><!-- 로그아웃 성공했을때 보여줄 페이지 지정 -->
      <intercept-url pattern="/" access="hasRole('ROLE_USER')"/> 
         <intercept-url pattern="/boardAll" access="hasRole('ROLE_USER')"/>
@@ -18,10 +18,9 @@
    <!--intercept-url태그로 입력받은 설정을 사용해서 FilterSecurityInterceptor 필터를 생성 
        form-login 설정을 사용해서 포 ㅁ기반 로그인 요청을 처리하는 UsernamePasswordAuthenticationFilter를 생성한다. -->
     
-    
     <!-- DB 를 이용한 인증 처리  -->
      <authentication-manager>
-     <authentication-provider>
+     <authentication-provider ref="">
         <jdbc-user-service 
              data-source-ref="dataSource"
              users-by-username-query=

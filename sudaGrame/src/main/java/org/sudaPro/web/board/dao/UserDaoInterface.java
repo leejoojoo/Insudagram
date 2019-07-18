@@ -12,7 +12,7 @@ public interface UserDaoInterface {
 	int insertMember(UserVo userVo) throws SQLException;
 	int fillHeart(int b_code) throws SQLException;
 	int outLineHeart(int b_code) throws SQLException;
-
+	public UserVo getUser(String principal);
 //	int checkOverId(String userEmail);
 
 

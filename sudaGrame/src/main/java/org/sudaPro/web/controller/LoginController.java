@@ -14,4 +14,7 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return  mv;
 	}
+	// 
+
+	
 }

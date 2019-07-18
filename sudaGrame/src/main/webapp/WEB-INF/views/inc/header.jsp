@@ -22,7 +22,7 @@
 						class="nav-link tm-nav-link tm-text-white myPageBtn" href="myPage">MyPage</a>
 					</li>
 					<li class="nav-item"><a
-						class="nav-link tm-nav-link tm-text-white findBtn" href="boardAll">Board</a></li>
+						class="nav-link tm-nav-link tm-text-white findBtn" href="boardAll">Board</a>${ userInfo.m_code }</li>
 					
 					<li class="nav-item active">
 					

@@ -1,6 +1,9 @@
 package org.sudaPro.web.controller;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,7 @@ public class BoardController {
 	
 	@RequestMapping("boardOne")
 	public String getBoardOne(int b_code, Model model) {
+		
 		model.addAttribute("board_one", this.boardService.getBoardOne(b_code));
 		model.addAttribute("imges", this.boardService.getImges(b_code));
 		model.addAttribute("comments", this.boardService.getComments(b_code));

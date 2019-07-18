@@ -63,4 +63,6 @@ public class BoardDaoImpl implements BoardDao{
 	public List<Gooder> getGoodList(int b_code) {
 		return session.selectList(namespace + ".goodList", b_code);
 	}
+	
+	
 }

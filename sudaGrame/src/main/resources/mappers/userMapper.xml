@@ -25,6 +25,10 @@ insert into good (g_code, b_code, m_code) values (g_code_seq.nextval, #{b_code},
 delete from good where m_code = 1 and b_code = #{b_code}
 </delete>
 
+<!-- 로그인 후 유저 정보 가져오기 -->
+<select id="getUser" resultType="org.sudaPro.web.board.vo.UserVo">
+select  m_email as userEmail, m_id as nickName , m_name as userName , m_password as passWord , m_code   from member where m_id = #{param1}
+</select>
 </mapper>
 
 

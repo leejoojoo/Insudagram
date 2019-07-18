@@ -48,7 +48,10 @@ public class UserDao implements UserDaoInterface{
 		return count;
 	}
 	
-	
+	@Override
+	public UserVo getUser(String principal) {
+		return session.selectOne(namespace + ".getUser",principal);
+	}
 	
 
 

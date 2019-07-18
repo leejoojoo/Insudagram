@@ -11,6 +11,9 @@ import org.sudaPro.web.board.vo.BoardOne;
 import org.sudaPro.web.board.vo.ChildComm;
 import org.sudaPro.web.board.vo.Comments;
 import org.sudaPro.web.board.vo.Gooder;
+import org.sudaPro.web.board.vo.UserVo;
+
+import com.sun.security.auth.UserPrincipal;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -60,5 +63,9 @@ public class BoardServiceImpl implements BoardService{
 	public List<Gooder> getGoodList(int b_code) {
 		return this.boardDao.getGoodList(b_code);
 	}
+
+	
+	
+	
 	
 }
