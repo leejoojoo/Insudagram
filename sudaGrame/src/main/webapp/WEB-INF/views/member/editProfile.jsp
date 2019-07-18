@@ -8,6 +8,28 @@
 	$(".myPageBtn").addClass("active")
 </script>
 
+<!-- 
+<script>
+$(document).ready(function(){
+    var upload = document.getElementById("profile-image-input");
+    var img = document.getElementById("profile-image");
+    $(".upload-button").on("click", function () {
+        upload.click();
+    });
+        upload.onchange = function (e) {
+        e.preventDefault();
+        var file = upload.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+        return false;
+       }
+});
+
+</script>
+ -->
 
 <main class="SCxLW  o64aR" role="main">
 <div class="BvMHM EzUlV">

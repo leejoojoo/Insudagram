@@ -1,22 +1,13 @@
 package org.sudaPro.web.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.sudaPro.web.board.service.UserRegService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.sudaPro.web.changePassword.service.ChangePasswordService;
 import org.sudaPro.web.editProfile.service.EditProfileService;
 import org.sudaPro.web.myPage.service.MypageService;
@@ -42,11 +33,16 @@ public class MemeberController {
 	int m_code = 1;
 
 	@RequestMapping("submitNewPassword")
-	public String updateMyPassword(MypageVO mypageVO, @RequestParam String old_password, @RequestParam String new_password, @RequestParam String m_password) throws Exception {
+	public String updateMyPassword(MypageVO mypageVO, @RequestParam("old_password") String old_password, 
+			@RequestParam("new_password") String new_password, @RequestParam("m_password") String m_password) throws Exception {
 		mypageVO.setM_code(m_code);
-		String o_password = mypageVO.getM_password();
+		String o_password = "hi1234";
 		if (old_password.equals(o_password) && new_password.equals(m_password) && m_password != null) {
-		submitnewpasswordService.updateMyPassword(mypageVO);
+			System.out.println("o_password : "+o_password);
+			System.out.println("old_password : "+old_password);
+			System.out.println("new_password : "+new_password);
+			System.out.println("m_password : "+m_password);
+			submitnewpasswordService.updateMyPassword(mypageVO);
 		}
 		return "redirect:myPage";
 	}
