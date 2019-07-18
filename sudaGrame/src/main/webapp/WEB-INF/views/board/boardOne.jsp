@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE>
 <style>
 ._-1_m6 {
-   transition: all .6s;
+	transition: all .6s;
 }
-.RnEpo{
-    display: none;
+
+.goodListPop, .deleteCommPop {
+	display: none;
 }
 </style>
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+var m_id = "${ pageContext.request.userPrincipal.name}";
    function printChildComm(data, button, cm_group) {
       $(data)
             .each(
@@ -44,8 +46,11 @@
                            + "</time><button class='FH9sR insertChildBtn' value='"+cm_group+","+x.m_id+"'>답글 달기</button></div></div></div>");
                      div.append(div2);
                      smallDiv.append(div);
-                     div = $("<div class='_4l6NB'><button class='dCJp8 afkep _0mzm-'><span class='glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7' aria-label='댓글 옵션'></span></button></div>");
-                     smallDiv.append(div);
+                     // console.log(x.cm_code);
+                     if(m_id == x.m_id){
+                    	 div = $("<div class='_4l6NB'><button class='dCJp8 afkep _0mzm- deleteCommBtn' value='"+x.cm_code+"'><span class='glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7' aria-label='댓글 옵션'></span></button></div>");
+                         smallDiv.append(div);
+                     }
                      li.append(smallDiv);
                      BigDiv.append(li);
                      button.append(BigDiv);
@@ -137,8 +142,10 @@
 													+ "	</time><button class='FH9sR insertChildBtn' value='1,"+x.m_id+"'>답글 달기</button></div></div></div>");
 											div.append(div1);
 											smallDiv.append(div);
-											div = $("<div class='_4l6NB'><button class='dCJp8 afkep _0mzm-'><span class='glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7' aria-label='댓글 옵션'></span></button></div>");
-											smallDiv.append(div);
+											if(m_id == x.m_id){
+												div = $("<div class='_4l6NB'><button class='dCJp8 afkep _0mzm- deleteCommBtn' value='"+x.cm_code+"'><span class='glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7' aria-label='댓글 옵션'></span></button></div>");
+												smallDiv.append(div);
+											}
 											li.append(smallDiv);
 											BigDiv.append(li);
 											ul.append(BigDiv);
@@ -218,6 +225,25 @@
          $(".listArea").append(div);
       });
    };
+   
+   function deleteComm(cm_code){
+	   $.ajax({
+	         url : "deleteComm",
+	         dataType : "json",
+	         type : "post",
+	         data : {
+	            cm_code: cm_code
+	         },
+	         cache : false // 항상 새로 읽어오겠다.
+	         ,
+	         success : function(data) {
+	        	 printComm(0);
+	         },
+	         error : function(group) {
+	            alert("에러~~~~");
+	         }
+	      });
+   };
 </script>
 <script>
    var imgMax = "${imges.size()}";
@@ -227,6 +253,7 @@
    $(".findBtn").addClass("active");
    $(document).ready(
          function() {
+        	 console.log("m_g: ${board_one.m_g}");
             // console.log("boardOne size: ${ board_one.m_id}");
             // console.log("Imges size: ${ imges.size() }");
             // console.log("Comments size: ${ comments.size() }")
@@ -288,7 +315,16 @@
 					index = index + 1;
 					console.log(index);
 				});
+			$(".closeDC").on("click", function(){
+				 $(".deleteCommPop").css("display", "none");
 			});
+			
+			$(".deleteC").on("click", function(){
+				// console.log($(this).val());
+				deleteComm($(this).val());
+				$(".deleteCommPop").css("display", "none");
+			});
+         });
 	var btn = null;
 	$(document).on("click", ".childBtn", function() {
 		// console.log($(this).val())
@@ -306,10 +342,15 @@
       $(".cm_content").val("@" + buffer[1] + " ");
       $(".insertComm").attr("disabled", false);
    });
+   
+   $(document).on("click", ".deleteCommBtn", function(){
+	   $(".deleteC").val($(this).val());
+	   $(".deleteCommPop").css("display", "block");
+   });
 </script>
 <main class="SCxLW  o64aR" role="main">
 <div class="Kj7h1">
-	<div class="ltEKP" style="max-width: 815px; border: 1px solid #f1f1f1">
+	<div class="ltEKP" style="max-width: 815px; border: 1px solid #f1f1f1; left: 50%;transform: translate(-50%);">
 		<article class="QBXjJ M9sTE  L_LMM  JyscU Tgarh ePUX4">
 			<header class="Ppjfr UE9AK  wdOqh">
 				<div class="RR-M- h5uC0 mrq0Z" role="button" tabindex="0">
@@ -330,7 +371,7 @@
 						</div>
 						<div class="bY2yH">
 							<span class="RPhNB">•</span>
-							<button class="oW_lN _0mzm- sqdOP yWX7d        " type="button">팔로우</button>
+							<button id="followButton" class="oW_lN _0mzm- sqdOP yWX7d        " type="button">팔로우</button>
 						</div>
 					</div>
 					<div class="M30cS">
@@ -406,15 +447,18 @@
 			</div>
 			<div class="eo2As ">
 				<section class="ltpMr Slqrh">
-					<span class="fr66n"><button class="dCJp8 afkep _0mzm- heart_button">
-						<c:if test="${ board_one.m_g > 0}">
-							<span id="heart1" class="glyphsSpriteHeart__filled__24__red_5 u-__7"
-								aria-label="좋아요"></span>
-						</c:if>
-						<c:if test="${ board_one.m_g } eq 0">
-							<span id="heart1" class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
-								aria-label="좋아요"></span>
-						</c:if>
+					<span class="fr66n"><button
+							class="dCJp8 afkep _0mzm- heart_button">
+							<c:if test="${ board_one.m_g > 0}">
+								<span id="heart1"
+									class="glyphsSpriteHeart__filled__24__red_5 u-__7"
+									aria-label="좋아요"></span>
+							</c:if>
+							<c:if test="${ board_one.m_g <= 0}">
+								<span id="heart1"
+									class="glyphsSpriteHeart__outline__24__grey_9 u-__7"
+									aria-label="좋아요"></span>
+							</c:if>
 						</button></span><span class="_15y0l"><button class="dCJp8 afkep _0mzm-">
 							<span
 								class="glyphsSpriteComment__outline__24__grey_9 u-__7 commBtn"
@@ -432,7 +476,8 @@
 					<div
 						class="                  Igw0E     IwRSH      eGOV_     ybXk5   vwCYk                                                                                                               ">
 						<div class="Nm9Fw">
-							<a class="zV_Nj goodList" href="javascript:void(0);">좋아요 <span><fmt:formatNumber value="${ board_one.g_cnt }" pattern="#,###" /></span>개
+							<a class="zV_Nj goodList" href="javascript:void(0);">좋아요 <span><fmt:formatNumber
+										value="${ board_one.g_cnt }" pattern="#,###" /></span>개
 							</a>
 						</div>
 					</div>
@@ -509,13 +554,15 @@
 													</div>
 												</div>
 											</div>
+											<c:if test="${ pageContext.request.userPrincipal.name eq comm.m_id }">
 											<div class="_4l6NB">
-												<button class="dCJp8 afkep _0mzm-">
+												<button class="dCJp8 afkep _0mzm- deleteCommBtn" value="${ comm.cm_code }">
 													<span
 														class="glyphsSpriteMore_horizontal__outline__24__grey_5 u-__7 commOption"
 														aria-label="댓글 옵션"></span>
 												</button>
 											</div>
+											</c:if>
 										</div></li>
 								</div>
 								<li><ul class="TCSYW commentArea">
@@ -567,29 +614,41 @@
 	</div>
 </div>
 </main>
-<div class="RnEpo Yx5HN   " role="presentation">
-   <div class="pbNvD fPMEg " role="dialog" style="margin:auto; margin-top: 200px;">
-      <div>
-         <div class="eiUFA">
-            <div class="WaOAr"></div>
-            <h1 class="m82CD">좋아요</h1>
-            <div class="WaOAr">
-               <button class="dCJp8 afkep _0mzm- closeGood">
-                  <span class="glyphsSpriteX__outline__24__grey_9 u-__7"
-                     aria-label="닫기"></span>
-               </button>
-            </div>
-         </div>
-      </div>
-      <div
-         class="                  Igw0E     IwRSH      eGOV_        vwCYk                                                                            i0EQd                                   "
-         style="max-height: 356px; min-height: 200px;">
-         <div style="height: 356px; overflow: hidden auto;" class="listArea">
-         </div>
-      </div>
-   </div>
+<div class="RnEpo Yx5HN  goodListPop " role="presentation">
+	<div class="pbNvD fPMEg " role="dialog"
+		style="margin: auto; margin-top: 200px;">
+		<div>
+			<div class="eiUFA">
+				<div class="WaOAr"></div>
+				<h1 class="m82CD">좋아요</h1>
+				<div class="WaOAr">
+					<button class="dCJp8 afkep _0mzm- closeGood">
+						<span class="glyphsSpriteX__outline__24__grey_9 u-__7"
+							aria-label="닫기"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div
+			class="                  Igw0E     IwRSH      eGOV_        vwCYk                                                                            i0EQd                                   "
+			style="max-height: 356px; min-height: 200px;">
+			<div style="height: 356px; overflow: hidden auto;" class="listArea">
+			</div>
+		</div>
+	</div>
 </div>
 
+<div class="RnEpo Yx5HN   deleteCommPop" role="presentation">
+	<button aria-hidden="true" class="yvwbg" tabindex="-1"></button>
+	<div class="pbNvD fPMEg " role="dialog" style="margin: auto; margin-top: 200px;">
+		<div class="piCib">
+			<div class="mt3GC">
+				<button class="aOOlW -Cab_ deleteC" tabindex="0">댓글 삭제</button>
+				<button class="aOOlW   HoLwm closeDC" tabindex="0">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <%-- // 	var element = ${".glyphsSpriteHeart__outline__24__grey_9 u-__7"}; --%>
 <!-- // 	var elementClass = element.attr('class'); -->
@@ -600,6 +659,7 @@ $(".heart_button").click(function(){
 	// console.log("클릭");
 	var condition = $(this).children().is(".glyphsSpriteHeart__outline__24__grey_9");
 	var b_code = ${param.b_code};
+	var g_cnt = ${ board_one.g_cnt };
 	// console.log(condition);
 	if (condition == true) {
 	$('#heart1').removeClass('glyphsSpriteHeart__outline__24__grey_9 u-__7').addClass('glyphsSpriteHeart__filled__24__red_5 u-__7');
@@ -607,11 +667,13 @@ $(".heart_button").click(function(){
 		 url : 'fillHeart',
            type : 'POST',
            data : {
-           	b_code:b_code
+           	b_code:b_code,
+           	m_code: 1
            	},
            dataType : "json",
            success : function(data) {
         	   // alert("좋아요추가")
+        	   $('#g_cnt').html(data);
            	}
 	 }); 
 	}
@@ -621,23 +683,25 @@ $(".heart_button").click(function(){
 			 url : 'outLineHeart',
 	            type : 'POST',
 	            data : {
-	               	b_code:b_code,
+	            	b_code:b_code,
+	               	m_code: 1
 	            	},
 	            dataType : "json",
 	            success : function(data) {
 	            	// alert("좋아요삭제")
+	            	$('#g_cnt').html(data);
 	            }
 		 }); 
 	}
 });
 	
-  $(".oW_lN _0mzm- sqdOP yWX7d").click(function() {//팔로우 추가 이벤트
+  $("#followButton").click(function() {//팔로우 추가 이벤트
 	  $.ajax({
 		  url : 'insertFollow',
           type : 'POST',
           data : {
-          	userEmail:userEmail,
-          	nickName:nickName
+        	  m_code:1,
+        	  m_code2:${ board_one.m_code }
           	},
           	dataType : "json",
 			success : function(data) {
@@ -647,7 +711,7 @@ $(".heart_button").click(function(){
 //                       'text': '구매하실 옵션을 선택해주세요.',
 //                       'alert': true
 //                    });
-        		setTimeout(location.reload.bind(location), 1000);
+//         		setTimeout(location.reload.bind(location), 1000);
 
             	
         }

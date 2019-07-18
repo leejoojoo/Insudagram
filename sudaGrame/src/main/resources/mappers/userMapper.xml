@@ -18,12 +18,20 @@ insert into member (m_code, m_name, m_email, m_id, m_password)values (seq_m_code
 </insert>
 
 <insert id="fillHeart" parameterType="java.lang.Integer">
-insert into good (g_code, b_code, m_code) values (g_code_seq.nextval, #{b_code}, 1)
+insert into good (g_code, b_code, m_code) values (g_code_seq.nextval, #{param1}, #{param2})
 </insert>
 
-<delete id="outLineHeart" parameterType="java.lang.Integer">
-delete from good where m_code = 1 and b_code = #{b_code}
+<delete id="outLineHeart" parameterType="HashMap">
+delete from good where m_code = #{param2} and b_code = #{param1}
 </delete>
+
+<select id="updateG_cnt" resultType="java.lang.Integer" parameterType = "HashMap">
+	select nvl(count(*),0) from good where b_code = #{param2}
+</select>
+
+<insert id="insertFollow" parameterType="HashMap">
+insert into follow (f_code, m_code, m_code2) values (follow_seq.nextval, #{param1}, #{param2})
+</insert>
 
 </mapper>
 

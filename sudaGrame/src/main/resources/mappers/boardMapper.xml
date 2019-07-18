@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where b_code = #{ b_code }
 	</select>
 	<select id="childComment" resultType="org.sudaPro.web.board.vo.ChildComm">
-		select cm_content, cm_date, m.m_id, m.m_picture, pm_id
+		select cm_content, cm_date, m.m_id, m.m_picture, pm_id, cm_code
 		from comm c join member m on c.m_code = m.m_code
 		where cm_group = #{ cm_group }
 		order by cm_date
@@ -64,5 +64,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select nvl(count(g_code), 0) m_g
 		from good
 		where b_code = #{ b_code } and m_code = #{ m_code }
+	</select>
+	<delete id="deleteComm">
+		delete from comm
+		where cm_code = #{ cm_code }
+	</delete>
+	<select id="RecomFollowList" resultType="org.sudaPro.web.board.vo.RecommFollowList">
+		select m.m_id, m.m_picture, count(m.m_id) f_cnt
+		from follow f join member m on f.m_code2 = m.m_code
+		where f.m_code != #{ m_code }
+		group by m.m_id, m.m_picture
+		order by f_cnt desc
 	</select>
 </mapper>

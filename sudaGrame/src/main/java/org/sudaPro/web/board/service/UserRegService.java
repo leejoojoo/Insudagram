@@ -44,22 +44,45 @@ public class UserRegService{
 		
 		return count3;
 	}
-	public int fillHeart(int b_code) {
+	public int fillHeart(int b_code,  int m_code) {
 		int count = 0;
 		userDao = userSqlSessin.getMapper(UserDaoInterface.class);
 		try {
-			count = userDao.fillHeart(b_code);
+			count = userDao.fillHeart(b_code,m_code);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return count;
 	}
-	public int outLineHeart(int b_code) {
+	public int outLineHeart(int b_code, int m_code) {
 		int count = 0;
 		userDao = userSqlSessin.getMapper(UserDaoInterface.class);
 		try {
-			count = userDao.outLineHeart(b_code);
+			count = userDao.outLineHeart(b_code, m_code);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	public int updateG_cnt(int m_code, int b_code) {
+		int count = 0;
+		userDao = userSqlSessin.getMapper(UserDaoInterface.class);
+		try {
+			count = userDao.updateG_cnt(m_code, b_code);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
+	public int insertFollow(int m_code, int m_code2) {
+		int count = 0;
+		userDao = userSqlSessin.getMapper(UserDaoInterface.class);
+		try {
+			count = userDao.insertFollow(m_code, m_code2);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
