@@ -7,15 +7,17 @@ import org.sudaPro.web.board.vo.BoardOne;
 import org.sudaPro.web.board.vo.ChildComm;
 import org.sudaPro.web.board.vo.Comments;
 import org.sudaPro.web.board.vo.Gooder;
+import org.sudaPro.web.board.vo.RecommFollowList;
 
 
 public interface BoardService {
 	public List<BoardAll> getBoardAll(String sort);
-	public BoardOne getBoardOne(int b_code);
+	public BoardOne getBoardOne(int b_code, int m_code);
 	public List<Comments> getComments(int b_code);
 	public List<String> getImges(int b_code);
 	public List<ChildComm> getChildComments(int cm_group);
 	public int insertComm(String content, int cm_group, int b_code, int m_code, String pm_id);
 	public List<Gooder> getGoodList(int b_code);
-	
+	public int deleteComm(int cm_code);
+	public List<RecommFollowList> getRecommFollow(int m_code);
 }

@@ -11,9 +11,7 @@ import org.sudaPro.web.board.vo.BoardOne;
 import org.sudaPro.web.board.vo.ChildComm;
 import org.sudaPro.web.board.vo.Comments;
 import org.sudaPro.web.board.vo.Gooder;
-import org.sudaPro.web.board.vo.UserVo;
-
-import com.sun.security.auth.UserPrincipal;
+import org.sudaPro.web.board.vo.RecommFollowList;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -28,8 +26,10 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardDao.getBoardAll(sort);
 	}
 	@Override
-	public BoardOne getBoardOne(int b_code) {
-		return this.boardDao.getBoardOne(b_code);
+	public BoardOne getBoardOne(int b_code, int m_code) {
+		BoardOne boardOne =  this.boardDao.getBoardOne(b_code);
+		boardOne.setM_g(this.boardDao.myGood(b_code, m_code));
+		return boardOne;
 	}
 	@Override
 	public List<Comments> getComments(int b_code) {
@@ -41,6 +41,7 @@ public class BoardServiceImpl implements BoardService{
 			int childCnt = this.boardDao.getChildCnt(b_code, comm.getCm_code());
 			comm.setCnt_child(childCnt);
 			list.add(comm);
+			// System.out.println("cm_code : "+comm.getCm_code());
 		}
 		return buffer;
 	}
@@ -64,8 +65,14 @@ public class BoardServiceImpl implements BoardService{
 		return this.boardDao.getGoodList(b_code);
 	}
 
-	
-	
-	
+	@Override
+	public int deleteComm(int cm_code) {
+		return this.boardDao.deleteComm(cm_code);
+	}
+
+	@Override
+	public List<RecommFollowList> getRecommFollow(int m_code) {
+		return this.boardDao.getRecommFollow(m_code);
+	}
 	
 }

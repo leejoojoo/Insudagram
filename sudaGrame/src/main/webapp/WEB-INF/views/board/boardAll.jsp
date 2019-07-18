@@ -102,191 +102,11 @@
 				<div class="_0T_XJ zRsZI">
 					<div class="NgKI_">
 						<div class="MreMs" tabindex="0" role="button"
-							style="transition-duration: 0s; transform: translateX(-1600px);">
+							style="transition-duration: 0s;">
 							<div class="qqm6D">
 								<ul class="YlNGR"
 									style="padding-left: 0px; padding-right: 24px;">
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
-											class="bsGjF" style="margin-left: 24px; width: 176px;">
-											<div role="button" tabindex="0">
-												<div
-													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
-													<a class="_2dbep qNELH kIKUG" href="/hyeonsu671/"
-														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/b1d4b1eff90cf6e6c39e38f3d36ff2cd/5DB160E8/t51.2885-19/s150x150/62654837_2320864671501964_3390176433019027456_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="hyeonsu671님의 프로필 사진"></a>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
-														<a class="FPmhX notranslate wWBVx" title="hyeonsu671"
-															href="/hyeonsu671/"><div
-																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
-																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">hyeonsu671</div>
-															</div></a>
-													</div>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
-														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">lhyzzzzz님
-															외 1명이 팔로우합니다</div>
-													</div>
-													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
-												</div>
-											</div>
-										</div></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
-											class="bsGjF" style="margin-left: 24px; width: 176px;">
-											<div role="button" tabindex="0">
-												<div
-													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
-													<a class="_2dbep qNELH kIKUG" href="/hanmin0811/"
-														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/452dba684a59f5d9e7d32f36417384f4/5DAA52EB/t51.2885-19/s150x150/52280222_2070144736373439_3482699846870106112_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="hanmin0811님의 프로필 사진"></a>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
-														<a class="FPmhX notranslate wWBVx" title="hanmin0811"
-															href="/hanmin0811/"><div
-																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
-																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">hanmin0811</div>
-															</div></a>
-													</div>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
-														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">회원님을
-															팔로우합니다</div>
-													</div>
-													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
-												</div>
-											</div>
-										</div></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
-											class="bsGjF" style="margin-left: 24px; width: 176px;">
-											<div role="button" tabindex="0">
-												<div
-													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
-													<a class="_2dbep qNELH kIKUG" href="/wolfy_jjc/"
-														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/fff2c5339c2e77e8b221e7910443ab56/5DB06DDD/t51.2885-19/s150x150/60036947_433322657214693_625530538911858688_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="wolfy_jjc님의 프로필 사진"></a>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
-														<a class="FPmhX notranslate wWBVx" title="wolfy_jjc"
-															href="/wolfy_jjc/"><div
-																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
-																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">wolfy_jjc</div>
-															</div></a>
-													</div>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
-														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">mo__jung2님이
-															팔로우합니다</div>
-													</div>
-													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
-												</div>
-											</div>
-										</div></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
-											class="bsGjF" style="margin-left: 24px; width: 176px;">
-											<div role="button" tabindex="0">
-												<div
-													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
-													<a class="_2dbep qNELH kIKUG" href="/junghoyoun__/"
-														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/b84fc9ecd94dbffad96aa65944633ff7/5DA95EA0/t51.2885-19/s150x150/60471478_457885178358290_8726489022727192576_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="junghoyoun__님의 프로필 사진"></a>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
-														<a class="FPmhX notranslate wWBVx" title="junghoyoun__"
-															href="/junghoyoun__/"><div
-																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
-																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">junghoyoun__</div>
-															</div></a>
-													</div>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
-														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">hack_ckck님이
-															팔로우합니다</div>
-													</div>
-													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
-												</div>
-											</div>
-										</div></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
-											class="bsGjF" style="margin-left: 24px; width: 176px;">
-											<div role="button" tabindex="0">
-												<div
-													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
-													<a class="_2dbep qNELH kIKUG" href="/l_young_ho_/"
-														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/1ecee8235bb6fa3bb550e04f3270d911/5DB9C905/t51.2885-19/s150x150/23421859_291948267962897_3691282249245786112_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="l_young_ho_님의 프로필 사진"></a>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
-														<a class="FPmhX notranslate wWBVx" title="l_young_ho_"
-															href="/l_young_ho_/"><div
-																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
-																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">l_young_ho_</div>
-															</div></a>
-													</div>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
-														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">seunguri2님
-															외 4명이 팔로우합니다</div>
-													</div>
-													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
-												</div>
-											</div>
-										</div></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
-											class="bsGjF" style="margin-left: 24px; width: 176px;">
-											<div role="button" tabindex="0">
-												<div
-													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
-													<a class="_2dbep qNELH kIKUG" href="/daeryongmun/"
-														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/f67a3da343a8ac9dd10b4fa89eb9ac1a/5DA656AC/t51.2885-19/s150x150/56894588_372453776812421_5888181755139063808_n.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="daeryongmun님의 프로필 사진"></a>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
-														<a class="FPmhX notranslate wWBVx" title="daeryongmun"
-															href="/daeryongmun/"><div
-																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
-																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">daeryongmun</div>
-															</div></a>
-													</div>
-													<div
-														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
-														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">회원님을
-															팔로우합니다</div>
-													</div>
-													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
-												</div>
-											</div>
-										</div></li>
+									<c:forEach items="${ rcommFollow }" var="rcomm">
 									<li class="_-1_m6" style="opacity: 1; width: 200px;"><div
 											class="bsGjF" style="margin-left: 24px; width: 176px;">
 											<div role="button" tabindex="0">
@@ -294,54 +114,30 @@
 													class="pV7Qt  _6Rvw2      DPiy6          Igw0E   rBNOH        eGOV_         _4EzTm                                                                                   XfCBB            g6RW6               ">
 													<a class="_2dbep qNELH kIKUG" href="/gimgweonsu6996/"
 														style="width: 56px; height: 56px;"><img class="_6q-tv"
-														src="https://scontent-icn1-1.cdninstagram.com/vp/d66c9d1107ee5a53ab67a7fc5bc91928/5DBD6020/t51.2885-19/s150x150/18011264_599007046959339_6933697247343280128_a.jpg?_nc_ht=scontent-icn1-1.cdninstagram.com"
-														alt="gimgweonsu6996님의 프로필 사진"></a>
+														src="${ rcomm.m_picture }"
+														alt="${ rcomm.m_id }님의 프로필 사진"></a>
 													<div
 														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                        aGBdT                                                  ">
 														<a class="FPmhX notranslate wWBVx" title="gimgweonsu6996"
 															href="/gimgweonsu6996/"><div
 																class="                  Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
 																<div
-																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">gimgweonsu6996</div>
+																	class="_7UhW9   xLCgt       qyrsm KV-D4            fDxYl l4b0S   T0kll ">${ rcomm.m_id }</div>
 															</div></a>
 													</div>
 													<div
 														class="                  Igw0E     IwRSH      eGOV_         _4EzTm    bkEs3                                                                                                          "
 														style="height: 28px;">
-														<div
-															class="_7UhW9  PIoXz       MMzan   _0PwGv          p1tLr  l4b0S    ">회원님을
-															팔로우합니다</div>
 													</div>
 													<button class="_0mzm- sqdOP  L3NKy       " type="button">팔로우</button>
 												</div>
 											</div>
 										</div></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
-									<li class="_-1_m6" style="opacity: 1; width: 200px;"></li>
+										</c:forEach>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<button class="Szr5J POSa_ " tabindex="-1">
-						<div class="LA45P  coreSpritePagingChevron  "></div>
-					</button>
-					<button class="Szr5J  _6CZji" tabindex="-1">
-						<div class=" Kf8kP coreSpritePagingChevron  "></div>
-					</button>
 				</div>
 			</div>
 		</div>

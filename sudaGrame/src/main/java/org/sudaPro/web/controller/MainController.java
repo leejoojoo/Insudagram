@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.sudaPro.web.board.service.BoardService;
 import org.sudaPro.web.board.service.UserRegService;
 import org.sudaPro.web.test.dao.TestDao;
+import org.sudaPro.web.main.service.MainService;
 
 import com.sun.security.auth.UserPrincipal;
 
@@ -31,6 +32,10 @@ public class MainController {
 	public void setService(UserRegService service) {
 		this.service = service;
 	}
+	private MainService mainService;
+	public void setMainService(MainService mainService) {
+		this.mainService = mainService;
+	}
 
 
 	@RequestMapping("/")
@@ -46,8 +51,12 @@ public class MainController {
 		}else {
 			return "member.login";
 		}
-		
-		//return "main";
 	}
+		//return "main";
+	public String getmainAll(Model model) {
+		model.addAttribute("main_all", this.mainService.getMainAll(null));
+		return "main";
+	}
+	
 	
 }

@@ -19,18 +19,19 @@ public class BoardController {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
-
-
+	
+	int m_code = 1;
+	
 	@RequestMapping("boardAll")
 	public String getboardAll(Model model) {
 		model.addAttribute("board_all", this.boardService.getBoardAll("b.b_code desc"));
+		model.addAttribute("rcommFollow", this.boardService.getRecommFollow(m_code));
 		return "board.boardAll";
 	}
 	
 	@RequestMapping("boardOne")
 	public String getBoardOne(int b_code, Model model) {
-		
-		model.addAttribute("board_one", this.boardService.getBoardOne(b_code));
+		model.addAttribute("board_one", this.boardService.getBoardOne(b_code, m_code));
 		model.addAttribute("imges", this.boardService.getImges(b_code));
 		model.addAttribute("comments", this.boardService.getComments(b_code));
 		return "board.boardOne";

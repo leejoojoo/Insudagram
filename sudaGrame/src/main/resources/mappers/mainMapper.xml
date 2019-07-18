@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.suda.mapper.MainMapper">
+	<select id="mainAll" resultType="org.sudaPro.web.main.vo.MainAll" parameterType="java.lang.String">
+	
+        select b.b_code, b.b_content, b.b_regdate, m.m_code, m.m_id, m.m_picture, count(g_code) g_cnt, count(c.cm_code) cm_cnt, count(img_code) img_cnt
+		from board b join img i on b.b_code = i.b_code
+            	 left join good g on b.b_code = g.b_code
+            	 left join comm c on c.b_code = b.b_code	
+                 left join member m on b.m_code = m.m_code
+<!--         where m.m_id = ${value}	 -->
+		group by b.b_code,b.b_content,m.m_code,b.b_regdate,m.m_id,m.m_picture      
+        order by b.b_code desc
+	
+	
+<!-- 		select b.b_code, b.b_content, i.img_img, g_cnt, cm_cnt, img_cnt, b.regdate, m.m_id, m.m_name -->
+<!-- 		from(select b.b_code, b.regdate,b.b_content, min(img_code) img_img, count(g_code) g_cnt, count(c.cm_code) cm_cnt, count(img_code) img_cnt -->
+<!-- 		from board b join img i on b.b_code = i.b_code -->
+<!--             	 left join good g on b.b_code = g.b_code -->
+<!--             	 left join comm c on c.b_code = b.b_code -->
+<!-- 		group by b.b_code -->
+<!-- 		)b join img i on b.img_code = i.img_code -->
+<!-- 		left join member m on b.m_code = m.m_code -->
+	</select>
+	<select id="mainImg" resultType="org.sudaPro.web.main.vo.MainImg">
+		select img_code, img_img, b_code
+		from img
+		where b_code = ${value}	
+	</select>
+	<select id="mainComments" resultType="org.sudaPro.web.main.vo.MainComments">
+		<![CDATA[
+		select c.cm_content, m.m_id cm_id, c.cm_code, c.pm_id
+		from comm c join member m on c.m_code = m.m_code
+		where c.b_code = ${value} and ROWNUM<3
+		order by c.cm_code DESC
+		]]>
+	</select>
+	<select id="myComment" resultType="org.sudaPro.web.main.vo.MyComm">
+		select cm_content, c.cm_code, m_id
+		from comm c join member m on c.m_code = m.m_code
+		where c.b_code = ${value}
+	</select>
+	<select id="selectEditBoard" resultType="org.sudaPro.web.main.vo.WriteBoard">
+		select * from board where b_code = ${value}
+	</select>
+	<insert id="writeBoard" >
+		insert into board values((select nvl(max(b_code),0)+1 from board),#{b_content},sysdate,1)
+	</insert>
+	<insert id="writeImg" >
+		insert into img values((select nvl(max(img_code),0)+1 from img),#{img_img},(select nvl(max(b_code),0) from board))
+	</insert>
+	<update id="editBoard">
+		update board set b_content= #{b_content}, b_regdate= #{b_regdate} where b_code = #{b_code}
+	</update>
+	<update id="editImg">
+		update img set img_img= #{img_img} where img_code = #{img_code}
+	</update>
+	<delete id="deleteBoard">
+		delete from board where b_code= #{b_code}
+	</delete>
+</mapper>

@@ -33,23 +33,34 @@ public class MemberAjaxController {
 	public int idcheck(@ModelAttribute UserVo userVo) {
 		int data1 = 0;
 		data1 = reg_service.insertMember(userVo);
-		System.out.println(data1);
 		return data1;
 	}
 	
 	@RequestMapping(value ="fillHeart", method = RequestMethod.POST)
-	public int fillHeart(int b_code) {
+	public int fillHeart(int b_code, int m_code) {
 		int data = 0;
-		data = reg_service.fillHeart(b_code);
+		int data2 = 0;
+		data = reg_service.fillHeart(b_code, m_code);
+		data2 = reg_service.updateG_cnt(m_code, b_code);
+		
 		System.out.println("좋아요추가"+data);
-		return data;
+		return data2;
 	}
 	
 	@RequestMapping(value ="outLineHeart", method = RequestMethod.POST)
-	public int outLineHeart(int b_code) {
+	public int outLineHeart(int b_code, int m_code) {
 		int data = 0;
-		data = reg_service.outLineHeart(b_code);
+		int data2 = 0;
+		data = reg_service.outLineHeart(b_code, m_code);
+		data2 = reg_service.updateG_cnt(m_code, b_code);
 		System.out.println("좋아요삭제"+data);
+		return data2;
+	}
+	
+	@RequestMapping(value ="insertFollow", method = RequestMethod.POST)
+	public int insertFollow(int m_code, int m_code2) {
+		int data = 0;
+		data = reg_service.insertFollow(m_code, m_code2);
 		return data;
 	}
 

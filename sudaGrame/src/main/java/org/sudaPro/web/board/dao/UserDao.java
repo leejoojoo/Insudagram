@@ -37,16 +37,43 @@ public class UserDao implements UserDaoInterface{
 	}
 
 	@Override
-	public int fillHeart(int b_code) throws SQLException {
-		int count = session.insert(namespace+".fillHeart", b_code);
+	public int fillHeart(int b_code, int m_code) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("b_code", b_code);
+		map.put("m_code", m_code);
+		int count = session.insert(namespace+".fillHeart", map);
 		return count;
 	}
 
 	@Override
-	public int outLineHeart(int b_code) throws SQLException {
-		int count = session.delete(namespace+".outLineHeart", b_code);
+	public int outLineHeart(int b_code,int m_code) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("b_code", b_code);
+		map.put("m_code", m_code);
+		int count = session.delete(namespace+".outLineHeart", map);
 		return count;
 	}
+
+	@Override
+	public int updateG_cnt(int m_code, int b_code) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_code", m_code);
+		map.put("b_code", b_code);
+		int count = session.selectOne(namespace+".updateG_cnt", map);
+		return count;
+	}
+
+	@Override
+	public int insertFollow(int m_code, int m_code2) throws SQLException {
+		Map<Integer, Object> map = new HashMap<Integer, Object>();
+		map.put(m_code, m_code2);
+		map.put(m_code, m_code2);
+		int count = session.insert(namespace+".insertFollow", map);
+		return 0;
+	}
+
+	
+	
 	
 	@Override
 	public UserVo getUser(String principal) {
