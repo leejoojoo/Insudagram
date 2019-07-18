@@ -35,6 +35,7 @@ $(document).ready(function() {
  		   for (var i = 0; i < $('div[class=_97aPb'+b_code+']').length ; i++) {
 //  			alert($('div[class=_97aPb'+b_code+']')[i].attr('value'));
 		 	  	formData.append("deleteGallery",$('div[class=_97aPb'+b_code+']')[i].attr('value'));
+		 	  	formData.append("deleteGallery",$('div[class=_97aPb'+b_code+']')[i].attr('value'));
 				alert(document.getElementsByClassName('_97aPb'+b_code+'')[i].attr('value'));
  		   }
 		
