@@ -33,7 +33,6 @@ public class MemberAjaxController {
 	public int idcheck(@ModelAttribute UserVo userVo) {
 		int data1 = 0;
 		data1 = reg_service.insertMember(userVo);
-		System.out.println(data1);
 		return data1;
 	}
 	

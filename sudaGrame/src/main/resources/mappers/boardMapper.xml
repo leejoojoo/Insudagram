@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by c.cm_group, c.cm_date
 	</select>
 	<select id="boardOne" resultType="org.sudaPro.web.board.vo.BoardOne">
-		select m.m_id, b_content, m.m_name, b.b_regdate, g_cnt, m_picture
+		select m.m_id, b_content, m.m_name, b.b_regdate, g_cnt, m_picture, m.m_code
 		from board b join member m on b.m_code = m.m_code
 		, (select count(g_code) g_cnt from good where b_code = #{ b_code })
 		where b_code = #{ b_code }
