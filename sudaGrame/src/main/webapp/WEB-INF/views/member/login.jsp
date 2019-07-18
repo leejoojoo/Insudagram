@@ -29,7 +29,7 @@
 					<div class="-MzZI ">
 						<div class="_9GP1n   ">
 							<label class="f0n8F "><input class="_2hvTZ pexuQ zyHYP email"
-								placeholder="전화번호, 사용자 이름 또는 이메일" aria-required="true"
+								placeholder="아이디" aria-required="true"
 								autocapitalize="off" autocorrect="off" maxlength="75"
 								name="j_username" type="text" ></label>
 							<div class="i24fI"></div>

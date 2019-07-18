@@ -46,4 +46,9 @@ public class BoardAjaxController {
 	public List<Gooder> goodList(int b_code){
 		return this.boardService.getGoodList(b_code);
 	}
+	
+	@RequestMapping("deleteComm")
+	public int deleteComm(int cm_code){
+		return this.boardService.deleteComm(cm_code);
+	}
 }
