@@ -325,7 +325,7 @@
                   </div>
                   <div class="bY2yH">
                      <span class="RPhNB">•</span>
-                     <button class="oW_lN _0mzm- sqdOP yWX7d        " type="button" value="${ board_one.m_code }">팔로우</button>
+                     <button id="followButton" class="oW_lN _0mzm- sqdOP yWX7d        " type="button" value="${ board_one.m_code }">팔로우</button>
                   </div>
                </div>
                <div class="M30cS">
@@ -421,7 +421,7 @@
                <div
                   class="                  Igw0E     IwRSH      eGOV_     ybXk5   vwCYk                                                                                                               ">
                   <div class="Nm9Fw">
-                     <a class="zV_Nj goodList" href="javascript:void(0);">좋아요 <span><fmt:formatNumber value="${ board_one.g_cnt }" pattern="#,###" /></span>개
+                     <a class="zV_Nj goodList" href="javascript:void(0);">좋아요 <span id="g_cnt">${ board_one.g_cnt }</span>개
                      </a>
                   </div>
                </div>
@@ -589,6 +589,7 @@ $(".heart_button").click(function(){
 	// console.log("클릭");
 	var condition = $(this).children().is(".glyphsSpriteHeart__outline__24__grey_9");
 	var b_code = ${param.b_code};
+	var g_cnt = ${ board_one.g_cnt };
 	// console.log(condition);
 	if (condition == true) {
 	$('#heart1').removeClass('glyphsSpriteHeart__outline__24__grey_9 u-__7').addClass('glyphsSpriteHeart__filled__24__red_5 u-__7');
@@ -596,11 +597,13 @@ $(".heart_button").click(function(){
 		 url : 'fillHeart',
            type : 'POST',
            data : {
-           	b_code:b_code
+           	b_code:b_code,
+           	m_code: 1
            	},
            dataType : "json",
            success : function(data) {
         	   // alert("좋아요추가")
+        	   $('#g_cnt').html(data);
            	}
 	 }); 
 	}
@@ -610,23 +613,25 @@ $(".heart_button").click(function(){
 			 url : 'outLineHeart',
 	            type : 'POST',
 	            data : {
-	               	b_code:b_code,
+	            	b_code:b_code,
+	               	m_code: 1
 	            	},
 	            dataType : "json",
 	            success : function(data) {
 	            	// alert("좋아요삭제")
+	            	$('#g_cnt').html(data);
 	            }
 		 }); 
 	}
 });
 	
-  $(".oW_lN _0mzm- sqdOP yWX7d").click(function() {//팔로우 추가 이벤트
+  $("#followButton").click(function() {//팔로우 추가 이벤트
 	  $.ajax({
 		  url : 'insertFollow',
           type : 'POST',
           data : {
-          	userEmail:userEmail,
-          	nickName:nickName
+        	  m_code:1,
+        	  m_code2:${ board_one.m_code }
           	},
           	dataType : "json",
 			success : function(data) {
@@ -636,7 +641,7 @@ $(".heart_button").click(function(){
 //                       'text': '구매하실 옵션을 선택해주세요.',
 //                       'alert': true
 //                    });
-        		setTimeout(location.reload.bind(location), 1000);
+//         		setTimeout(location.reload.bind(location), 1000);
 
             	
         }
