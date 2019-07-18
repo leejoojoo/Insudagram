@@ -124,18 +124,20 @@ var idck = 0;
             dataType : "json",
             success : function(data) {
             	
-            	if (data[0] != "") {
+            	if (data[0] != null) {
             		for (var i = 0; i < data.length; i++) {
                     	if (data[i]==1) {
                     		$("#nickName").val("사용중인 닉네임입니다 :p");
         					$("#nickName").css("color", "red");
+        					setTimeout(location.reload.bind(location), 1000);
         				}
                     	if(data[i]==2){
         					$("#userEmail").val("사용중인 아이디입니다 :p");
         					$("#userEmail").css("color", "red");
+        					setTimeout(location.reload.bind(location), 1000);
                     	}
         				}
-				}if(data[0] == null || userEmail.match(regExp) == null || passWord.match(passwordRules) == null || userName == "" || nickName == ""){
+				}if(data[0] == null && userEmail.match(regExp) != null && passWord.match(passwordRules) != null && userName != "" && nickName != ""){
 					  $.ajax({
 						 url : 'insertMember',
 				            type : 'POST',
@@ -148,9 +150,9 @@ var idck = 0;
 				            dataType : "json",
 				            success : function(data1) {
 				            	if(data1 == 1){
-				            		alert("회원가입이 정상적으로 완료되었습니다.");
+				            		alert("회원가입이 완료되었습니다.");
 				            		setTimeout(location.reload.bind(location), 1000);
-				            		post_to_url("login");
+									post_to_url("login");
 				            	}
 				            	
 				            }
