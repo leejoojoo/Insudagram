@@ -19,6 +19,7 @@ public class BoardAjaxController {
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
+	int m_code = 1;
 	
 	@RequestMapping("boardSort")
 	public List<BoardAll> getBoardSort(String sort){
@@ -32,8 +33,8 @@ public class BoardAjaxController {
 	
 	@RequestMapping("insertComm")
 	public int insertComm(String pm_id, String content, int b_code, int group){
-		System.out.printf("pm_id : %s, content: %s, b_code: %d, group: %d\n", pm_id, content, b_code, group);
-		return this.boardService.insertComm(content, group, b_code, 4, pm_id);
+		// System.out.printf("pm_id : %s, content: %s, b_code: %d, group: %d\n", pm_id, content, b_code, group);
+		return this.boardService.insertComm(content, group, b_code, m_code, pm_id);
 	}
 	
 	@RequestMapping("printComm")

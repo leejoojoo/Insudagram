@@ -63,4 +63,11 @@ public class BoardDaoImpl implements BoardDao{
 	public List<Gooder> getGoodList(int b_code) {
 		return session.selectList(namespace + ".goodList", b_code);
 	}
+	@Override
+	public int myGood(int b_code, int m_code) {
+		Map<String, Object> parames = new HashMap<String, Object>();
+		parames.put("b_code", b_code);
+		parames.put("m_code", m_code);
+		return session.selectOne(namespace+".myGood", parames);
+	}
 }

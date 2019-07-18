@@ -15,6 +15,13 @@ public class BoardOne {
 	}
 	public void setM_code(int m_code) {
 		this.m_code = m_code;
+	private int m_g;
+	
+	public int getM_g() {
+		return m_g;
+	}
+	public void setM_g(int m_g) {
+		this.m_g = m_g;
 	}
 	public String getM_id() {
 		return m_id;
