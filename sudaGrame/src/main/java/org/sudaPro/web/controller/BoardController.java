@@ -22,6 +22,7 @@ public class BoardController {
 	@RequestMapping("boardAll")
 	public String getboardAll(Model model) {
 		model.addAttribute("board_all", this.boardService.getBoardAll("b.b_code desc"));
+		model.addAttribute("rcommFollow", this.boardService.getRecommFollow(m_code));
 		return "board.boardAll";
 	}
 	
