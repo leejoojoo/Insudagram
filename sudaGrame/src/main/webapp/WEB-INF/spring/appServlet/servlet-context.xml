@@ -24,4 +24,8 @@
 	
 	<context:component-scan base-package="org.sudaPro.web" />
 	
+   <beans:bean id="uploadPath" class="java.lang.String">
+      <beans:constructor-arg value="C:/Users/SIST175/git/insudaGram/sudaGrame/src/main/webapp/resources/image"></beans:constructor-arg>
+   </beans:bean>   
+	
 </beans:beans>

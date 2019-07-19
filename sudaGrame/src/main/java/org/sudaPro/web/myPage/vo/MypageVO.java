@@ -1,5 +1,7 @@
 package org.sudaPro.web.myPage.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MypageVO {
 	
 	private int m_code;
@@ -12,6 +14,8 @@ public class MypageVO {
 	private String m_website;
 	private String m_introduction;
 	private String m_gender;
+	private String m_realPath;
+	private MultipartFile m_MultipartFile;
 	
 	private int b_code;
 	
@@ -82,6 +86,18 @@ public class MypageVO {
 	}
 	public void setM_gender(String m_gender) {
 		this.m_gender = m_gender;
+	}
+	public String getM_realPath() {
+		return m_realPath;
+	}
+	public void setM_realPath(String m_realPath) {
+		this.m_realPath = m_realPath;
+	}
+	public MultipartFile getM_MultipartFile() {
+		return m_MultipartFile;
+	}
+	public void setM_MultipartFile(MultipartFile m_MultipartFile) {
+		this.m_MultipartFile = m_MultipartFile;
 	}
 	public int getB_code() {
 		return b_code;
