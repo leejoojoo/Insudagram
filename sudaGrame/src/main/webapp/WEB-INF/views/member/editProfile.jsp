@@ -8,28 +8,7 @@
 	$(".myPageBtn").addClass("active")
 </script>
 
-<!-- 
-<script>
-$(document).ready(function(){
-    var upload = document.getElementById("profile-image-input");
-    var img = document.getElementById("profile-image");
-    $(".upload-button").on("click", function () {
-        upload.click();
-    });
-        upload.onchange = function (e) {
-        e.preventDefault();
-        var file = upload.files[0];
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-        return false;
-       }
-});
 
-</script>
- -->
 
 <main class="SCxLW  o64aR" role="main">
 <div class="BvMHM EzUlV">
@@ -43,27 +22,36 @@ $(document).ready(function(){
 			<div class="LqNQc">
 				<div class="M-jxE">
 					<button class="IalUJ " title="프로필 사진 추가">
-						<<img alt="프로필 사진 추가" class="be6sR"
-							src="${myInfo.m_picture }" name="m_picture"> 
+						<img alt="프로필 사진 추가" class="be6sR"
+							src="${realpath }${myInfo.m_picture }" name="m_picture" id="profile-image"> 
 							<!-- https://instagram.fisb5-1.fna.fbcdn.net/vp/952cda0aaecf724403d1da985c1dcf84/5DA39AF1/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fisb5-1.fna.fbcdn.net -->
 					</button>
 					<div>
-						<form enctype="multipart/form-data" method="POST"
-							role="presentation">
-							<input accept="image/jpeg,image/png" class="tb_sK" type="file">
-						</form>
+<!-- 						<form enctype="multipart/form-data" method="POST" -->
+<!-- 							role="presentation"> -->
+<!-- 							<input accept="image/jpeg,image/png" class="tb_sK" type="file"> -->
+<!-- 						</form> -->
 					</div>
 				</div>
 			</div>
 			<div class="XX1Wc">
 				<h1 class="kHYQv " title="jjjindong">${myInfo.m_id }</h1>
-				<button class="_0mzm- sqdOP yWX7d        " type="submit" id="profileImg">프로필
+				<!-- 
+				<button class="_0mzm- sqdOP yWX7d        " type="submit" id="upload-button">프로필
 					사진 바꾸기</button>
+				 -->	
 				<div>
-					<form enctype="multipart/form-data" method="POST"
-						role="presentation" action="<%= request.getContextPath() %>/profileImageUploadForm">
-						<input accept="image/jpeg,image/png" class="tb_sK" type="file">
+					<form enctype="multipart/form-data" method="POST" id="profileUpload">
+<!-- 						<input accept="image/jpeg,image/png" class="tb_sK" type="file" id="profile-image-input"> -->
+						<input class="_0mzm- sqdOP yWX7d  " type="file" id="upload-button">
+						<button class="_0mzm- sqdOP yWX7d" type="submit" id="uploadProfile-button">프로필 변경</button>
 					</form>
+<!-- 					<form enctype="multipart/form-data" method="POST" -->
+<%-- 						role="presentation" action="<%= request.getContextPath() %>/profileImageUpload"> --%>
+<!--  						<input accept="image/jpeg,image/png" class="tb_sK" type="file" id="profile-image-input"> -->
+<!-- 						<input class="_0mzm- sqdOP yWX7d        " type="file" id="upload-button"> -->
+<!-- 						<button class="_0mzm- sqdOP yWX7d" type="submit" id="uploadProfile-button">프로필 변경</button> -->
+<!-- 					</form> -->
 				</div>
 			</div>
 		</div>
@@ -164,3 +152,69 @@ $(document).ready(function(){
 	</article>
 </div>
 </main>
+
+<script>
+//$(document).ready(function(){
+//     var upload = document.getElementById("profile-image-input");
+    $("#profileUpload").on("submit", function () {
+    /* 	
+        upload.click();
+    });
+     */
+    	
+//     var upload = document.getElementById("upload-button");
+//     var img = document.getElementById("profile-image");
+    
+    
+    var formData = new FormData();
+    formData.append("profile",$('#upload-button')[0].files[0]);
+//     formData.append("profile",$('input[id="upload-button"]').files[0]);
+
+	    /* $.ajax({
+	        url: "uploadProfileImage",
+	        type: "POST",
+	        data: formData,
+	        processData: false,
+	        contentType: false,
+	        cache: false,
+	        success: function (data) {
+	           // alert("프로필 사진이 완료되었습니다.");
+	           console.log( data)
+	            
+	            console.log(data)
+	            
+	        },
+	        error: function (e) {
+	            alert("프로필 사진이 실패하였습니다.");
+	        }
+	    }); */
+	  
+	$.ajax({
+			url : 'uploadProfileImage',
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			cache: false,
+			success : function(result) {
+				alert("업로드 성공!!");
+			},
+			error: function (e) {
+	            alert("프로필 사진이 실패하였습니다.");
+	        }
+		});
+
+		//         upload.onchange = function (e) {
+		//         e.preventDefault();
+		//         var file = upload.files[0];
+		//         var reader = new FileReader();
+		//         reader.onload = function (event) {
+		//             img.src = event.target.result;
+		//         };
+		//         reader.readAsDataURL(file);
+		//         return false;
+		//        }
+
+	});
+	//});
+</script>
