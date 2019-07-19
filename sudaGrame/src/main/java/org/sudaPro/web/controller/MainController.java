@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.sudaPro.web.board.service.BoardService;
 import org.sudaPro.web.board.service.UserRegService;
+import org.sudaPro.web.board.vo.UserVo;
 import org.sudaPro.web.test.dao.TestDao;
 import org.sudaPro.web.main.service.MainService;
 
@@ -22,7 +23,9 @@ public class MainController {
 	
 	@Autowired
 	private UserRegService service;
-	
+
+	@Autowired
+	private MainService mainService;
 	
 	public void setDao(TestDao dao) {
 		this.dao = dao;
@@ -32,7 +35,6 @@ public class MainController {
 	public void setService(UserRegService service) {
 		this.service = service;
 	}
-	private MainService mainService;
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
 	}
@@ -40,23 +42,33 @@ public class MainController {
 	
 	@RequestMapping("/")
 	public String main(Model model,HttpSession session, HttpServletRequest request) {
-	//	public String main(Model model, com.sun.security.auth.UserPrincipal) {
-		// System.out.println("asd!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + request.getUserPrincipal().getName());
-		// System.out.println("name" + principal.getName());
-		if (request.getUserPrincipal().getName() != null) {// 로그인 한 상태면 
+	if (request.getUserPrincipal().getName() != null) {// 로그인 한 상태면 
 			session.setAttribute("userInfo", this.service.getUserInfo(request.getUserPrincipal().getName()));
-			model.addAttribute("test", dao.test(3));
-			return "main";
+		//	model.addAttribute("test", dao.test(3));
+			
+			
+		/*	UserVo user = (UserVo)session.getAttribute("userInfo");
+			System.out.println("!!!!!!"+user.getM_code());
+			String m_code = user.getM_code();
+			model.addAttribute("main_all", this.mainService.getMainAll(m_code));*/
+			
+			return "redirect:main2";
 			
 		}else {
 			return "member.login";
 		}
 	}
 		//return "main";
-	public String getmainAll(Model model) {
-		model.addAttribute("main_all", this.mainService.getMainAll(null));
+	
+	@RequestMapping("main2")
+	public String getmainAll(Model model,HttpSession session, HttpServletRequest request) {
+		
+		UserVo user = (UserVo)session.getAttribute("userInfo");
+		System.out.println(user.getM_code());
+		int m_code = user.getM_code();
+		model.addAttribute("main_all", this.mainService.getMainAll(m_code));
 		return "main";
 	}
-	
+
 	
 }

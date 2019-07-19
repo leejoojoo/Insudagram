@@ -30,6 +30,7 @@ $(document).ready(function() {
 			$('.edit').unbind("click").bind("click",function(){
 				$('#editDel_board_Modal').modal("hide");
 				editBoard(b_code);
+				alert("hi");
 			});
 		 
 			$('.delete').unbind("click").bind("click",function(){
