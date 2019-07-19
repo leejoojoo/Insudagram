@@ -23,14 +23,14 @@
 				<div class="M-jxE">
 					<button class="IalUJ " title="프로필 사진 추가">
 						<img alt="프로필 사진 추가" class="be6sR"
-							src="${realpath }${myInfo.m_picture }" name="m_picture" id="profile-image"> 
+							src="resources/image/${myInfo.m_picture }" name="m_picture" id="profile-image"> 
 							<!-- https://instagram.fisb5-1.fna.fbcdn.net/vp/952cda0aaecf724403d1da985c1dcf84/5DA39AF1/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fisb5-1.fna.fbcdn.net -->
 					</button>
 					<div>
-<!-- 						<form enctype="multipart/form-data" method="POST" -->
-<!-- 							role="presentation"> -->
-<!-- 							<input accept="image/jpeg,image/png" class="tb_sK" type="file"> -->
-<!-- 						</form> -->
+<!-- 				<form enctype="multipart/form-data" method="POST" -->
+<!-- 					role="presentation"> -->
+<!-- 				<input accept="image/jpeg,image/png" class="tb_sK" type="file"> -->
+<!-- 				</form> -->
 					</div>
 				</div>
 			</div>
@@ -170,7 +170,7 @@
     formData.append("profile",$('#upload-button')[0].files[0]);
 //     formData.append("profile",$('input[id="upload-button"]').files[0]);
 
-	    /* $.ajax({
+	    $.ajax({
 	        url: "uploadProfileImage",
 	        type: "POST",
 	        data: formData,
@@ -181,14 +181,12 @@
 	           // alert("프로필 사진이 완료되었습니다.");
 	           console.log( data)
 	            
-	            console.log(data)
-	            
 	        },
 	        error: function (e) {
 	            alert("프로필 사진이 실패하였습니다.");
 	        }
-	    }); */
-	  
+	    }); 
+	/*   
 	$.ajax({
 			url : 'uploadProfileImage',
 			processData : false,
@@ -203,7 +201,7 @@
 	            alert("프로필 사진이 실패하였습니다.");
 	        }
 		});
-
+ */
 		//         upload.onchange = function (e) {
 		//         e.preventDefault();
 		//         var file = upload.files[0];

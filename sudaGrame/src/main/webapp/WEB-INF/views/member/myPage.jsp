@@ -22,7 +22,7 @@
 			<div class="M-jxE">
 				<button class="IalUJ " title="프로필 사진 추가">
 					<img alt="프로필 사진 추가" class="be6sR"
-						src="${IDAndProfilePicture.m_picture }">
+						src="resources/image/${IDAndProfilePicture.m_picture }">
 				</button>
 				<div>
 					<form enctype="multipart/form-data" method="POST"
@@ -78,7 +78,7 @@
 								<div class="KL4Bh" style="background: white">
 									<img alt="사진 설명이 없습니다." class="FFVAD" decoding="auto"
 										sizes="293.0062255859375px"
-										src="${images.img_img }"
+										src="resources/image/${images.img_img }"
 										style="object-fit: cover; width: 400px; height: 400px; align-content: center;">
 								</div>
 							</div></a>

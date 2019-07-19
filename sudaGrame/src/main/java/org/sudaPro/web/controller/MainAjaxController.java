@@ -4,22 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.annotation.Resource;
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.DefaultNamingPolicy;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.sudaPro.web.main.service.MainService;
 import org.sudaPro.web.main.vo.WriteBoard;
-import org.sudaPro.web.main.vo.WriteImg;
 
 
 
@@ -31,9 +28,15 @@ public class MainAjaxController {
 		this.mainService = mainService;
 	}
 	
-	@Resource(name ="uploadPath")
-	private String uploadPath;
+	@Autowired
+	ServletContext c;
+	private String realPath;
 	
+	@PostConstruct
+	public void initController() {
+		this.realPath = c.getRealPath("/resources/image");
+	}
+   
 	public void renameFile(String filename, String newFilename) {
 	    File file = new File( filename );
 	    File fileNew = new File( newFilename );
@@ -51,17 +54,17 @@ public class MainAjaxController {
 	public int setDeleteBoard(@RequestParam("b_code") String b_code, @RequestParam("deleteGallery") String[] img_img, HttpServletRequest request) throws IOException {
 		System.out.println("hi");
 		System.out.println(b_code);
-		System.out.println(uploadPath);
-//		uploadPath += "/resources/image";
-		return this.mainService.setDeleteBoard(uploadPath,b_code,img_img);
+		System.out.println(realPath);
+//		realPath += "/resources/image";
+		return this.mainService.setDeleteBoard(realPath,b_code,img_img);
 	}
 	
 	@RequestMapping(value="writeBoard", method=RequestMethod.POST)
 	public int setWriteBoard(@RequestParam("b_content") String b_content, @RequestParam("writeGallery") MultipartFile[] multipartFile, HttpServletRequest request) throws IOException {
 		System.out.println("hi");
-//		uploadPath += "/resources/image";
-		System.out.println(uploadPath);
-		File saveDir = new File(uploadPath);
+//		realPath += "/resources/image";
+		System.out.println(realPath);
+		File saveDir = new File(realPath);
 		if (!saveDir.exists())
 			saveDir.mkdirs();
 		
@@ -75,7 +78,7 @@ public class MainAjaxController {
 //		List<MultipartFile>file = request.getFiles("picture");
 //		System.out.println(b_content);
 		
-		return this.mainService.setWriteBoard(uploadPath,multipartFile, b_content);
+		return this.mainService.setWriteBoard(realPath,multipartFile, b_content);
 	}
 	
 	

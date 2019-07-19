@@ -28,8 +28,5 @@
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 	
-	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:/Users/SIST167/git/insudaGram/sudaGrame/src/main/webapp/resources/image"></beans:constructor-arg>
-	</beans:bean>	
 </beans:beans>
 

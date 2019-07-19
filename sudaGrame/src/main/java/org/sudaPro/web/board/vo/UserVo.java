@@ -5,16 +5,16 @@ public class UserVo {
 	String nickName ;
 	String userName ;
 	String passWord ;
-	String m_code   ;
+	int m_code   ;
 	String g_code   ;
 	String b_code   ;
 	
 	
 	
-	public String getM_code() {
+	public int getM_code() {
 		return m_code;
 	}
-	public void setM_code(String m_code) {
+	public void setM_code(int m_code) {
 		this.m_code = m_code;
 	}
 	public String getG_code() {

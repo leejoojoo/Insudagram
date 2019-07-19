@@ -38,12 +38,12 @@ public class ProfileImageUploadServiceImpl implements ProfileImageUploadService{
 //	}
 
 	@Override
-	public int profileImageUpload(MultipartFile multipartFile, String uploadPath) throws Exception {
-			System.out.println(uploadPath);
+	public int profileImageUpload(MultipartFile multipartFile, String realPath) throws Exception {
+			System.out.println(realPath);
 			String originName = multipartFile.getOriginalFilename();
 			System.out.println(originName);
 			byte[]bytes=multipartFile.getBytes();
-			File files = new File(uploadPath,originName);
+			File files = new File(realPath,originName);
 			FileCopyUtils.copy(bytes, files);
 			
 			return this.profileimageuploaddao.profileImageUpload(originName);

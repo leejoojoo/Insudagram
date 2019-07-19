@@ -5,16 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.sudaPro.web.board.vo.UserVo;
 import org.sudaPro.web.changePassword.service.ChangePasswordService;
 import org.sudaPro.web.editProfile.service.EditProfileService;
 import org.sudaPro.web.myPage.service.MypageService;
@@ -38,23 +43,29 @@ public class MemeberController {
 	SubmitNewPasswordService submitnewpasswordService;
 	@Inject
 	ProfileImageUploadService profileimageuploadService;
-	/*
-	HttpServletRequest req;
-	HttpSession session = req.getSession();
-	*/
-	int m_code = 1;
+	
+	@Autowired
+	ServletContext c;
+	private String realPath;
+	
+	@PostConstruct
+	public void initController() {
+		this.realPath = c.getRealPath("/resources/image");
+	}
+   
+	UserVo user;
 
-	//프로필사진 경로
-	@Resource(name ="uploadPath")
-	private String uploadPath;
 	
 	@RequestMapping("submitNewPassword")
 	public String updateMyPassword(MypageVO mypageVO, @RequestParam("old_password") String old_password, 
-			@RequestParam("new_password") String new_password, @RequestParam("m_password") String m_password) throws Exception {
-		//UserVo user = (UserVo) session.getAttribute("userInfo");
+			@RequestParam("new_password") String new_password, @RequestParam("m_password") String m_password,HttpSession session) throws Exception {
+		
+		 user = (UserVo) session.getAttribute("userInfo");
+		int m_code = user.getM_code();
+		String o_password = user.getPassWord();
+		
 		//System.out.println(user.getM_code());
-		mypageVO.setM_code(m_code);
-		String o_password = "hi1234";
+		//mypageVO.setM_code(m_code);
 		if (old_password.equals(o_password) && new_password.equals(m_password) && m_password != null) {
 			System.out.println("o_password : "+o_password);
 			System.out.println("old_password : "+old_password);
@@ -66,7 +77,11 @@ public class MemeberController {
 	}
 
 	@RequestMapping("changePassword")
-	public String changePassword(Model model) throws Exception {
+	public String changePassword(Model model,HttpSession session) throws Exception {
+		 user = (UserVo) session.getAttribute("userInfo");
+		int m_code = user.getM_code();
+		String o_password = user.getPassWord();
+		
 		MypageVO myPictureAndId = changepasswordService.getMyPictureAndId(m_code);
 		model.addAttribute("myPictureAndId", myPictureAndId);
 
@@ -75,7 +90,7 @@ public class MemeberController {
 
 	@RequestMapping("submitNewProfile")
 	public String submitNewProfile(MypageVO mypageVO) throws Exception {
-		mypageVO.setM_code(m_code);
+		//mypageVO.setM_code(m_code);
 		submitnewprofileService.updateMyPage(mypageVO);
 
 		return "redirect:myPage";
@@ -96,26 +111,29 @@ public class MemeberController {
 			HttpServletRequest request
 			)                 
 	          throws Exception {
-		System.out.println("hii");
 //		MypageVO mypageVO = new MypageVO();
 		Map<String, Object> result  = new HashMap<>();
 //		String realPath = request.getRealPath("/resources/img");
-		System.out.println(uploadPath);
-	      File saveDir = new File(uploadPath);
+		System.out.println(realPath);
+	      File saveDir = new File(realPath);
 	      if (!saveDir.exists())
 	         saveDir.mkdirs();
 //		mypageVO.setM_realPath(realPath);
 //		mypageVO.setM_MultipartFile(multipartFile);
-	      this.profileimageuploadService.profileImageUpload(multipartFile, uploadPath);
+	      this.profileimageuploadService.profileImageUpload(multipartFile, realPath);
 	      result.put("result", 1111);
-	      String realpath = request.getRealPath("/resources/image/");
+	     // String realpath = request.getRealPath("/resources/image/");
 	      
 		return result;
 
 	}
 
 	@RequestMapping("editProfile")
-	public String editProfile(Model model) throws Exception {
+	public String editProfile(Model model,HttpSession session) throws Exception {
+		 user = (UserVo) session.getAttribute("userInfo");
+		int m_code = user.getM_code();
+		String o_password = user.getPassWord();
+		
 		MypageVO myInfo = editprofileService.getMyInfo(m_code);
 		model.addAttribute("myInfo", myInfo);
 		
@@ -123,7 +141,11 @@ public class MemeberController {
 	}
 	
 	@RequestMapping("myPage")
-	public String myPage(Model model) throws Exception {
+	public String myPage(Model model,HttpSession session) throws Exception {
+		
+		 user = (UserVo) session.getAttribute("userInfo");
+		int m_code = user.getM_code();
+		String o_password = user.getPassWord();
 		MypageVO IDAndProfilePicture = mypageService.getIDAndProfilePicture(m_code);
 		model.addAttribute("IDAndProfilePicture", IDAndProfilePicture );
 		model.addAttribute("NOP", mypageService.getNumberOfPost(m_code));
