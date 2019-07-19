@@ -79,6 +79,7 @@ public class MainServiceImpl implements MainService{
 //		writeBoard.put("b_content", multipartFile);	
 		
 		String originName[] = new String[multipartFile.length];
+		System.out.println(realPath);
 		for (int i = 0; i < multipartFile.length; i++) {
 			originName[i] = multipartFile[i].getOriginalFilename();
 			byte[]bytes=multipartFile[i].getBytes();
@@ -86,7 +87,6 @@ public class MainServiceImpl implements MainService{
 			FileCopyUtils.copy(bytes, files);
 		}
 		/*String originName = multipartFile.getOriginalFilename();
-		System.out.println(realPath);
 		WriteImg writeImg = new WriteImg();
 		writeImg.setImg_img(originName);
 		byte[]bytes=multipartFile.getBytes();
@@ -96,14 +96,18 @@ public class MainServiceImpl implements MainService{
 		return this.mainDao.setWriteBoard(realPath,originName,b_content);
 	}
 
-	public int setDeleteBoard(String realPath, String b_code, MultipartFile[] multipartFile) throws IOException {
+	public int setDeleteBoard(String realPath, String b_code, String[] img_img) throws IOException {
 		System.out.println("service hiiiiiiii");
-		String originName[] = new String[multipartFile.length];
-		for (int i = 0; i < multipartFile.length; i++) {
-			originName[i] = multipartFile[i].getOriginalFilename();
-			byte[]bytes=multipartFile[i].getBytes();
+		System.out.println(realPath);
+		String originName[] = new String[img_img.length];
+//		System.out.println(originName[0]);
+		for (int i = 0; i < img_img.length; i++) {
+			System.out.println("aaaaaaaaaaa"+i);
+			originName[i] = img_img[i];
+//			byte[]bytes=multipartFile[i].getBytes();
 			File files = new File(realPath,originName[i]);
 			files.delete();
+//			if(files.delete()) System.out.println(files.getName()+"성공");
 		}
 		return this.mainDao.setDeleteBoard(b_code);
 	}

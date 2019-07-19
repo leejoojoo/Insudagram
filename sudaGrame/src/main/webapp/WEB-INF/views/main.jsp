@@ -17,91 +17,25 @@
 <link rel="stylesheet" href="resources/main/bootstrap.min.css">
 <script src="resources/main/bootstrap.min.js"></script>
 <script>
+
 $(document).ready(function() {
 	
 	//게시물 수정,삭제
 	$('.editDel').click(function(){
 		
 		var b_code = $(this).val();
-		var img_img1 = $('div[class=_97aPb'+b_code+']').attr('name')	;
-		var img_img2 = $('div[class=_97aPb'+b_code+']').attr('name');
-		alert(b_code);
-		alert(img_img1);
-		alert(img_img2);
-		
-		   var formData = new FormData();
-		   formData.append("b_code",b_code);
-		   
- 		   for (var i = 0; i < $('div[class=_97aPb'+b_code+']').length ; i++) {
-//  			alert($('div[class=_97aPb'+b_code+']')[i].attr('value'));
-		 	  	formData.append("deleteGallery",$('div[class=_97aPb'+b_code+']')[i].attr('value'));
-		 	  	formData.append("deleteGallery",$('div[class=_97aPb'+b_code+']')[i].attr('value'));
-				alert(document.getElementsByClassName('_97aPb'+b_code+'')[i].attr('value'));
- 		   }
-		
-		
 		
 		$('#editDel_board_Modal').modal("show");
 		
-		$('.edit').click(function(){
-			//b_content, img_img, img_code
-			   $.ajax({
-		            url:"selectEditBoard",
-		            type:"GET",
-		            data:{b_code:b_code},
-		            cache: false,
-		            success: function (data) {
-						$('#edit_board_Modal').modal("show");
-						$(data).each(function(index, i){
-							$(i.mainImg).each(function(index, x){
-								console.log("img: " + x.img_img);
-							});
-							alert(i.b_content);
-// 							$('#b_content').attr('val',i.b_content);
-							$('textarea[id=b_content]').val(i.b_content);
-							
-							
-							$('div[name=editImg]').html('<ul><li><label><input type="checkbox" name="'+i.img_img+'" title="파일명" />'+i.img_img+'</label></li></ul>');
-							
-							
-							
-							
-						});
-
-		            },
-		            error: function (e) {
-		                alert("게시물 수정이 실패하였습니다.");
-		            }
-		        });
-		});
-		
-			
-			$('.delete').click(function(){
-			
-			alert(img_img);
-			alert(b_code);
-			
-
-			
-			   $.ajax({
-		            url:"deleteBoard",
-		            type:"POST",
-		            data: formData,
-		            processData: false,
-		            contentType: false,
-		            cache: false,
-		            success: function (data) {
-		                alert("게시물 삭제가 완료되었습니다.");
-		                $('#editDel_board_Modal').modal("hide");
-		            },
-		            error: function (e) {
-		                alert("게시물 삭제가 실패하였습니다.");
-		            }
-		        });
-			 
-		});
-		
-		
+			$('.edit').unbind("click").bind("click",function(){
+				$('#editDel_board_Modal').modal("hide");
+				editBoard(b_code);
+			});
+		 
+			$('.delete').unbind("click").bind("click",function(){
+				$('#editDel_board_Modal').modal("hide");
+				getDelBoard(b_code);
+			});		 
 	});
 	
 	
@@ -109,12 +43,11 @@ $(document).ready(function() {
 	$('.writeBoard').click(function(){
 		$('#write_board_Modal').modal("show");
 		});
+	
 	//사진추가
 	var i =2;
 	$('#galleryPlus').click(function(){
 		if(i<=10){
-// 		$('#writeGallery').after('<input type="file" class="writeGallery" name="writeGallery'+i+'" style="border: none;"/><br />');
-// 		$('#writeGallery').after('<input type="file" class="writeGallery" name="writeGallery[]" style="border: none;"/><br />');
 		$('#writeGallery').after('<input type="file" class="writeGallery" name="writeGallery" style="border: none;"/><br />');
 		i++;
 		}else{
@@ -123,9 +56,53 @@ $(document).ready(function() {
 	});
 	
 	
-	   //갤러리
+
+	
+	
+	   //게시물 수정 POST
+	   $('input[name=ins]').on('click',function(){
+			 event.preventDefault();
+			 if($('#edit_content').val()=='')
+			 {
+			 $('#edit_content').focus();
+			 alert("제목을 입력해주세요");
+			 }else if($('#editGallery').val()==''){
+			 alert("사진을 선택해주세요");
+			 }else{					 
+				   var formData = new FormData();
+				   formData.append("b_content",$('#edit_content').val());
+				   for (var i = 0; i < $('input[class=edit_content]').length ; i++) {
+					   console.log("i: " + i);
+				   	formData.append("editGallery",$('input[name=edit_content]')[i].files[0]);
+				   }
+				   
+				   $.ajax({
+			            url: "writeBoard",
+			            type: "POST",
+			            data: formData,
+			            processData: false,
+			            contentType: false,
+			            cache: false,
+			            success: function (data) {
+			                alert("게시물 작성이 완료되었습니다.");
+			                $('#b_content').val(null);
+			                $('.writeGallery').val(null);
+			                $('#write_board_Modal').modal("hide");
+			                window.location.href="";
+			            },
+			            error: function (e) {
+			                alert("게시물 작성이 실패하였습니다.");
+			            }
+			        });
+				 
+			  }
+	   
+	});
+	
+	
+	   //게시물 작성 POST
 	   $('#insert_form_gallery').on('submit',function(event){
-				   event.preventDefault();
+			 event.preventDefault();
 				   
 			 if($('#b_content').val()=='')
 			 {
@@ -140,10 +117,6 @@ $(document).ready(function() {
 					   console.log("i: " + i);
 				   	formData.append("writeGallery",$('input[name=writeGallery]')[i].files[0]);
 				   }
-// 				   formData.append("picture",$('input[name=writeGallery]')[0].files[0]);
-// 				   formData.append("picture",$('input[name=writeGallery['+i+']]')[0].files[0]);
-// 				   formData.append("picture",$('input[name=writeGallery'+i+']')[0].files[0]);
-// 				   formData.append("picture"+i+"",$('input[name=writeGallery'+i+']')[0].files[0]);
 				   
 				   $.ajax({
 			            url: "writeBoard",
@@ -157,6 +130,7 @@ $(document).ready(function() {
 			                $('#b_content').val(null);
 			                $('.writeGallery').val(null);
 			                $('#write_board_Modal').modal("hide");
+			                window.location.href="";
 			            },
 			            error: function (e) {
 			                alert("게시물 작성이 실패하였습니다.");
@@ -167,7 +141,129 @@ $(document).ready(function() {
 	   
 	});
 	   
-})
+});
+
+function editBoard(b_code){
+	   $.ajax({
+           url:"selectEditBoard",
+           type:"GET",
+           data:{b_code:b_code},
+           cache: false,
+           success: function (data) {
+				$('#edit_board_Modal').modal("show");
+				
+				//사진추가
+				var i =2;
+				$('#galleryEditPlus').click(function(){
+					if(i<=10){
+					$('#editGallery').after('<input type="file" class="editGallery" name="editGallery" style="border: none;"/><br />');
+					i++;
+					}else{
+						alert("최대 10장까지 가능합니다")
+					}
+				});
+				
+				$(data).each(function(index, i){
+					$('textarea[id=edit_content]').val(i.b_content);
+						thtml='';
+						console.log("content: " + i.b_content);
+					$(i.mainImg).each(function(index, x){
+// 						thtml+='<ul><li><label><input type="checkbox" name="'+x.img_img+'" title="파일명" />'+x.img_img+'</label></li></ul>';
+						thtml+='<ul><li><label><input type="checkbox" name="check" title="파일명" value="'+x.img_img+'"/>'+x.img_img+'</label></li></ul>';
+						$('div[name=editImg]').html(thtml);
+						console.log("img: " + x.img_img);
+					});
+				});
+          
+           
+				$('input[name=del]').on('click',function(){
+					var list=[];
+					$('input[name="check"]:checked').each(function(index, x){
+						list.push($(this).val());
+					});
+					   $.ajax({
+				           url:"deleteBoard",
+				           type:"POST",
+				           data: formData,
+				           processData: false,
+				           contentType: false,
+				           cache: false,
+				           success: function (data) {
+				               alert("게시물 삭제가 완료되었습니다.");
+				               window.location.href="";
+				           },
+				           error: function (e) {
+				               alert("게시물 삭제가 실패하였습니다.");
+				           }
+				       });
+				});	
+           
+           
+           
+           
+           
+           },
+           error: function (e) {
+//                alert("게시물 수정이 실패하였습니다.");
+           }
+       });
+}
+
+function postEditDelBoard(b_code){
+	   $.ajax({
+           url:"selectEditBoard",
+           type:"GET",
+           data:{b_code:b_code},
+           cache: false,
+           success: function (data) {
+        	   postDelBoard(data);
+           },
+           error: function (e) {
+           }
+       });
+}
+
+function getDelBoard(b_code){
+	   $.ajax({
+           url:"selectEditBoard",
+           type:"GET",
+           data:{b_code:b_code},
+           cache: false,
+           success: function (data) {
+        	   postDelBoard(data);
+           },
+           error: function (e) {
+           }
+       });
+}
+
+function postDelBoard(data){
+	   var formData = new FormData();
+		$(data).each(function(index, i){
+		    formData.append("b_code",i.b_code);
+		    	console.log("b_code  : "+i.b_code);
+			$(i.mainImg).each(function(index, x){
+			   	formData.append("deleteGallery",x.img_img);
+				console.log("img: " + x.img_img);
+			});
+		});
+	
+	   $.ajax({
+           url:"deleteBoard",
+           type:"POST",
+           data: formData,
+           processData: false,
+           contentType: false,
+           cache: false,
+           success: function (data) {
+               alert("게시물 삭제가 완료되었습니다.");
+               window.location.href="";
+           },
+           error: function (e) {
+               alert("게시물 삭제가 실패하였습니다.");
+           }
+       });
+}
 
 </script>
 <main class="SCxLW  o64aR" role="main">
@@ -1120,34 +1216,32 @@ $(".heart_button").click(function(){
 							<div class="modal-header" style="text-align: center; background: gray; color:white; padding: 10px;height: 60px;">
 						<h3 style="position:absolute; left:50%; top:50%;margin-left:-45px;margin-top:-10px;">게시물 수정</h3>
 							</div>
-				모달 바디
 							<div class="modal-body">
 							
 							<form method="post" enctype="multipart/form-data" id="edit_form_gallery">
-<!-- 							<label><b>내용</b></label> -->
-<!-- 							<textarea name="b_content" id="b_content" class="form-control"></textarea> -->
-<!-- 							<br/> -->
-<!-- 							<a id="galleryPlus" style="float: right; margin: 15px; ">+사진 추가</a> -->
-<!-- 							<br> -->
-<!-- 							<input type="file" id="editGallery" class="writeGallery" name="writeGallery" style="border: none;"/> -->
-<!-- 							<br> -->
-<!-- 							<br> -->
+							<label><b>내용</b></label>
+							<textarea name="edit_content" id="edit_content" class="form-control"></textarea>
+							<br/>
+							<a id="galleryEditPlus" style="float: right; margin: 15px; ">+사진 추가</a>
+							<br>
+							<input type="file" id="editGallery" class="editGallery" name="editGallery" style="border: none;"/>
+							<br>
+							<br>
 							
-<!-- 								<div class="file_set box_type03 mgt5" name="editImg" style="width:100%; border:solid 1px gray; padding:5px;" tabindex="0"> -->
+								<div class="file_set box_type03 mgt5" name="editImg" style="width:100%; border:solid 1px gray; padding:5px;" tabindex="0">
 <!-- 								<ul> -->
 <%-- 								<c:forEach items="" var="imgs" varStatus="status"> --%>
 <!-- 									<li><label><input type="checkbox" name="" title="파일명" /></label></li> -->
 <%-- 								</c:forEach> --%>
 <!-- 								</ul> -->
-<!-- 								</div> -->
+								</div>
 							
-<!-- 							<br> -->
-<!-- 							<input type="submit" name ="insert" id="insert" value="수정" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/> -->
-<!-- 							<input type="submit" name ="insert" id="insert" value="삭제" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/> -->
+							<br>
+							<input type="submit" name ="ins" value="수정" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>
+							<input type="submit" name ="del" value="삭제" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;weight:34px;"/>
 							</form>
 							
 							</div>
-				모달 풋터
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
@@ -1229,7 +1323,7 @@ $(".heart_button").click(function(){
 							<input type="file" id="writeGallery" class="writeGallery" name="writeGallery" style="border: none;"/>
 							<br>
 							<br>
-							<input type="submit" name ="insert" id="insert" value="작성" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>
+							<input type="submit" id="insert" value="작성" class="btn btn-success" style="left:50%; top:50%; background-color:gray;border-color:gray;"/>
 							</form>
 							</div>
 				<!-- 모달 풋터 -->

@@ -14,7 +14,7 @@ public class MainController {
 		this.mainService = mainService;
 	}
 
-
+	
 	@RequestMapping("/")
 	public String getmainAll(Model model) {
 		model.addAttribute("main_all", this.mainService.getMainAll(null));

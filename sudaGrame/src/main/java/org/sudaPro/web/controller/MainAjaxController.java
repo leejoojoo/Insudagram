@@ -48,17 +48,19 @@ public class MainAjaxController {
 	}
 	
 	@RequestMapping(value="deleteBoard", method=RequestMethod.POST)
-	public int setDeleteBoard(@RequestParam("b_content") String b_code, @RequestParam("deleteGallery") MultipartFile[] multipartFile, HttpServletRequest request) throws IOException {
+	public int setDeleteBoard(@RequestParam("b_code") String b_code, @RequestParam("deleteGallery") String[] img_img, HttpServletRequest request) throws IOException {
 		System.out.println("hi");
 		System.out.println(b_code);
-		uploadPath += "/resources/image";
-		return this.mainService.setDeleteBoard(uploadPath,b_code,multipartFile);
+		System.out.println(uploadPath);
+//		uploadPath += "/resources/image";
+		return this.mainService.setDeleteBoard(uploadPath,b_code,img_img);
 	}
 	
 	@RequestMapping(value="writeBoard", method=RequestMethod.POST)
 	public int setWriteBoard(@RequestParam("b_content") String b_content, @RequestParam("writeGallery") MultipartFile[] multipartFile, HttpServletRequest request) throws IOException {
 		System.out.println("hi");
-		uploadPath += "/resources/image";
+//		uploadPath += "/resources/image";
+		System.out.println(uploadPath);
 		File saveDir = new File(uploadPath);
 		if (!saveDir.exists())
 			saveDir.mkdirs();
