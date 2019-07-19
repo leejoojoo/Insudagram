@@ -5,9 +5,40 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <style>
-	.nav-item:not(.active) a{
-		color: white!important;
-	 }
+/* 	.nav-item:not(.active) a{ */
+/* 		color: white!important; */
+/* 	 } */
+</style>
+ <style>
+        /* The Modal (background) */
+        .modal3 {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content3 {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+ 		
+ 		#color1 {color: black;} 
+ 		.pop{
+ 		
+ 		 		color : black !important;
+ 		}
+
 </style>
 <div class="tm-welcome-section"> 
 	<div class="container tm-navbar-container">
@@ -39,14 +70,19 @@
 			</div>
 		</div>
 	</div>
+	
+
 <script>
+
+
 $('._logout').on("click",function(){
-	alert('로그아웃 하시겠습니까?');
+	confirm("로그아웃 하시겠습니까?");
+	
 })
 </script>
 	<div class="container text-center tm-welcome-container">
 		<div class="tm-welcome">
-			<h1 class="text-uppercase mb-3 tm-site-name">수다스타그램</h1>
+			<h1 class="text-uppercase mb-3 tm-site-name">人suda</h1>
 		</div>
 	</div>
 

@@ -12,8 +12,9 @@ public interface UserDaoInterface {
 	int insertMember(UserVo userVo) throws SQLException;
 	int fillHeart(int b_code,  int m_code) throws SQLException;
 	int outLineHeart(int b_code, int m_code) throws SQLException;
-	int updateG_cnt(int m_code, int b_code) throws SQLException;
+	int updateG_cnt(int b_code) throws SQLException;
 	int insertFollow(int m_code, int m_code2) throws SQLException;
+	int deleteFollow(int m_code, int m_code2) throws SQLException;
 
 //	int checkOverId(String userEmail);
 

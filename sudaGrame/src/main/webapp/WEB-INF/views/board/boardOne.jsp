@@ -476,8 +476,7 @@ var m_id = "${ pageContext.request.userPrincipal.name}";
 					<div
 						class="                  Igw0E     IwRSH      eGOV_     ybXk5   vwCYk                                                                                                               ">
 						<div class="Nm9Fw">
-							<a class="zV_Nj goodList" href="javascript:void(0);">좋아요 <span><fmt:formatNumber
-										value="${ board_one.g_cnt }" pattern="#,###" /></span>개
+							<a class="zV_Nj goodList" href="javascript:void(0);">좋아요 <span id="g_cnt">${ board_one.g_cnt }</span>개
 							</a>
 						</div>
 					</div>
@@ -662,13 +661,13 @@ $(".heart_button").click(function(){
 	var g_cnt = ${ board_one.g_cnt };
 	// console.log(condition);
 	if (condition == true) {
-	$('#heart1').removeClass('glyphsSpriteHeart__outline__24__grey_9 u-__7').addClass('glyphsSpriteHeart__filled__24__red_5 u-__7');
+	$('#heart1').removeClass('glyphsSpriteHeart__outline__24__grey_9').addClass('glyphsSpriteHeart__filled__24__red_5');
 	$.ajax({
 		 url : 'fillHeart',
            type : 'POST',
            data : {
            	b_code:b_code,
-           	m_code: 1
+           	m_code: ${userInfo.m_code}
            	},
            dataType : "json",
            success : function(data) {
@@ -678,13 +677,13 @@ $(".heart_button").click(function(){
 	 }); 
 	}
 	if(condition == false){
-		$('#heart1').removeClass('glyphsSpriteHeart__filled__24__red_5 u-__7').addClass('glyphsSpriteHeart__outline__24__grey_9 u-__7');	
+		$('#heart1').removeClass('glyphsSpriteHeart__filled__24__red_5').addClass('glyphsSpriteHeart__outline__24__grey_9');	
 		$.ajax({
 			 url : 'outLineHeart',
 	            type : 'POST',
 	            data : {
 	            	b_code:b_code,
-	               	m_code: 1
+	               	m_code: ${userInfo.m_code}
 	            	},
 	            dataType : "json",
 	            success : function(data) {
@@ -694,30 +693,37 @@ $(".heart_button").click(function(){
 		 }); 
 	}
 });
-	
-  $("#followButton").click(function() {//팔로우 추가 이벤트
-	  $.ajax({
-		  url : 'insertFollow',
-          type : 'POST',
-          data : {
-        	  m_code:1,
-        	  m_code2:${ board_one.m_code }
-          	},
-          	dataType : "json",
-			success : function(data) {
-				alert("팔로우가 추가되었습니다.")
-// 				$.popup(
-//                    "/Poing/pick/popup/confirm.do", {
-//                       'text': '구매하실 옵션을 선택해주세요.',
-//                       'alert': true
-//                    });
-//         		setTimeout(location.reload.bind(location), 1000);
 
-            	
-        }
-          	
-	  });
-	  
-  });
+$("#followButton").click(function() {
+	if ($(this).html()=='팔로우') {
+		$.ajax({
+			  url : 'insertFollow',
+	          type : 'POST',
+	          data : {
+	        	  m_code:${userInfo.m_code},
+	        	  m_code2:${ board_one.m_code }
+	          	},
+	          	dataType : "json",
+				success : function(data) {
+					$("#followButton").html('팔로잉');
+				}
+	        });
+	}
+	if($(this).html()=='팔로잉'){
+		 $.ajax({
+			  url : 'deleteFollow',
+	          type : 'POST',
+	          data : {
+	        	  m_code:${userInfo.m_code},
+	        	  m_code2:${ board_one.m_code }
+	          	},
+	          	dataType : "json",
+				success : function(data) {
+					$("#followButton").html('팔로우');
+				}
+	        });
+	}
+});
+
 
 </script>
