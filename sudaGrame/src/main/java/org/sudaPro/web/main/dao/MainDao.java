@@ -10,7 +10,7 @@ import org.sudaPro.web.main.vo.MyComm;
 import org.sudaPro.web.main.vo.WriteBoard;
 
 public interface MainDao {
-	public List<MainAll> getMainAll(String m_id);
+	public List<MainAll> getMainAll(int m_code);
 	public List<MainComments> getMainComments(int b_code);
 	public List<MainImg> getMainImg(int b_code);
 	public List<MyComm> getMyComment(int b_code);

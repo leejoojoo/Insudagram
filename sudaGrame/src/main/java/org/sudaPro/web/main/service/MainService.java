@@ -12,7 +12,7 @@ import org.sudaPro.web.main.vo.WriteBoard;
 
 
 public interface MainService {
-	public List<MainAll> getMainAll(String m_id);
+	public List<MainAll> getMainAll(int m_code);
 //	public List<MainComments> getMainComments(int b_code);
 //	public List<MainImg> getMainImg(int b_code);
 	public int setWriteBoard(String realPath, MultipartFile[] multipartFile, String b_content) throws IOException;

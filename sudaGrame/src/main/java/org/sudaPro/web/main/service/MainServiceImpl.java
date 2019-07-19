@@ -26,10 +26,11 @@ public class MainServiceImpl implements MainService{
 	}
 	
 	@Override
-	public List<MainAll> getMainAll(String m_id) {
-		List<MainAll>buffer = this.mainDao.getMainAll(m_id);
+	public List<MainAll> getMainAll(int m_code) {
+		List<MainAll>buffer = this.mainDao.getMainAll(m_code);
 		List<MainAll>list = new ArrayList<>();
 		for (int i = 0; i < buffer.size(); i++) {
+			System.out.println("service hiiiiiiiiiiiiiiii");
 			MainAll main = buffer.get(i);
 			main.setMainComments( this.mainDao.getMainComments(main.getB_code()));
 			main.setMyComment(this.mainDao.getMyComment(main.getB_code()));

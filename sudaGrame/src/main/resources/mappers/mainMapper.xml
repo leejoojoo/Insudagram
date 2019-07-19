@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.suda.mapper.MainMapper">
-	<select id="mainAll" resultType="org.sudaPro.web.main.vo.MainAll" parameterType="java.lang.String">
+	<select id="mainAll" resultType="org.sudaPro.web.main.vo.MainAll">
 	
         select b.b_code, b.b_content, b.b_regdate, m.m_code, m.m_id, m.m_picture, count(g_code) g_cnt, count(c.cm_code) cm_cnt, count(img_code) img_cnt
 		from board b join img i on b.b_code = i.b_code

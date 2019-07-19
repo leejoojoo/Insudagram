@@ -13,11 +13,19 @@ public class MainAll {
 	private int img_cnt;
 	private String m_id;
 	private String m_picture;
+	private int m_code;
 //	private String m_name;
 	private List<MainComments> mainComments;
 	private List<MyComm> myComment;
 	private List<MainImg> mainImg;
 	
+
+	public int getM_code() {
+		return m_code;
+	}
+	public void setM_code(int m_code) {
+		this.m_code = m_code;
+	}
 	public List<MainImg> getMainImg() {
 		return mainImg;
 	}

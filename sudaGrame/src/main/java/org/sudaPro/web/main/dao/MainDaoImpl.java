@@ -25,9 +25,9 @@ public class MainDaoImpl implements MainDao{
 	private static String namespace = "org.suda.mapper.MainMapper";
 	
 	@Override
-	public List<MainAll> getMainAll(String m_id) {
-		// System.out.println(sort);
-		return session.selectList(namespace+".mainAll",m_id);
+	public List<MainAll> getMainAll(int m_code) {
+		 System.out.println(m_code);
+		return session.selectList(namespace+".mainAll",m_code);
 	}
 	@Override
 	public List<MainComments> getMainComments(int b_code) {
