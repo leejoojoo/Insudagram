@@ -25,18 +25,24 @@ insert into good (g_code, b_code, m_code) values (g_code_seq.nextval, #{param1},
 delete from good where m_code = #{param2} and b_code = #{param1}
 </delete>
 
+
 <!-- 로그인 후 유저 정보 가져오기 -->
 <select id="getUser" resultType="org.sudaPro.web.board.vo.UserVo">
 select  m_email as userEmail, m_id as nickName , m_name as userName , m_password as passWord , m_code   from member where m_id = #{param1}
 </select>
-<select id="updateG_cnt" resultType="java.lang.Integer" parameterType = "HashMap">
-	select nvl(count(*),0) from good where b_code = #{param2}
+
+<select id="updateG_cnt" resultType="java.lang.Integer" parameterType = "java.lang.Integer">
+	select count(*) from good where b_code = #{b_code}
+
 </select>
 
 <insert id="insertFollow" parameterType="HashMap">
 insert into follow (f_code, m_code, m_code2) values (follow_seq.nextval, #{param1}, #{param2})
 </insert>
 
+<delete id="deleteFollow" parameterType="HashMap">
+delete from follow where m_code = #{param1} and m_code2 = #{param2}
+</delete>
 </mapper>
 
 

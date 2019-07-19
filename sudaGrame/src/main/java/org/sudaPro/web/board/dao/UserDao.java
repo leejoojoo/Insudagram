@@ -55,23 +55,30 @@ public class UserDao implements UserDaoInterface{
 	}
 
 	@Override
-	public int updateG_cnt(int m_code, int b_code) throws SQLException {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("m_code", m_code);
-		map.put("b_code", b_code);
-		int count = session.selectOne(namespace+".updateG_cnt", map);
+	public int updateG_cnt(int b_code) throws SQLException {
+		int count = session.selectOne(namespace+".updateG_cnt", b_code);
 		return count;
 	}
 
 	@Override
 	public int insertFollow(int m_code, int m_code2) throws SQLException {
-		Map<Integer, Object> map = new HashMap<Integer, Object>();
-		map.put(m_code, m_code2);
-		map.put(m_code, m_code2);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_code", m_code);
+		map.put("m_code", m_code2);
 		int count = session.insert(namespace+".insertFollow", map);
-		return 0;
+		return count;
 	}
 
+	@Override
+	public int deleteFollow(int m_code, int m_code2) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_code", m_code);
+		map.put("m_code", m_code2);
+		int count = session.delete(namespace+".deleteFollow", map);
+		return count;
+	}
+	
+	
 	
 	
 	
