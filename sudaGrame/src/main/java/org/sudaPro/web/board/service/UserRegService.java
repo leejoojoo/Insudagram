@@ -67,11 +67,11 @@ public class UserRegService{
 		
 		return count;
 	}
-	public int updateG_cnt(int m_code, int b_code) {
+	public int updateG_cnt(int b_code) {
 		int count = 0;
 		userDao = userSqlSessin.getMapper(UserDaoInterface.class);
 		try {
-			count = userDao.updateG_cnt(m_code, b_code);
+			count = userDao.updateG_cnt(b_code);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,4 +96,15 @@ public class UserRegService{
 		return this.userDao.getUser(principal);
 	}
 
+	public int deleteFollow(int m_code, int m_code2) {
+		int count = 0;
+		userDao = userSqlSessin.getMapper(UserDaoInterface.class);
+		try {
+			count = userDao.deleteFollow(m_code, m_code2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
 }

@@ -11,10 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             	 left join good g on b.b_code = g.b_code
             	 left join comm c on c.b_code = b.b_code	
                  left join member m on b.m_code = m.m_code
-<!--         where m.m_id = ${value}	 -->
+                 join follow f on m.m_code = f.m_code
+        where f.m_code2 = ${value}
 		group by b.b_code,b.b_content,m.m_code,b.b_regdate,m.m_id,m.m_picture      
         order by b.b_code desc
-	
 	
 <!-- 		select b.b_code, b.b_content, i.img_img, g_cnt, cm_cnt, img_cnt, b.regdate, m.m_id, m.m_name -->
 <!-- 		from(select b.b_code, b.regdate,b.b_content, min(img_code) img_img, count(g_code) g_cnt, count(c.cm_code) cm_cnt, count(img_code) img_cnt -->

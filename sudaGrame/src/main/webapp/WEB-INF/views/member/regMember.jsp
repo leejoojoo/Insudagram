@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -91,7 +94,16 @@
 </div>
 </main>
 
+
+
+
+
 <script type="text/javascript">
+function close_pop(flag) {
+    $('#myModal').hide();
+};
+
+
 var idck = 0;
     $("#signButton").click(function() {
     	event.preventDefault();
@@ -150,9 +162,8 @@ var idck = 0;
 				            dataType : "json",
 				            success : function(data1) {
 				            	if(data1 == 1){
-				            		alert("회원가입이 완료되었습니다.");
-				            		setTimeout(location.reload.bind(location), 1000);
-									post_to_url("login");
+				            		alert("회원가입이 완료되었습니다");
+				            		location.href="login";
 				            	}
 				            	
 				            }
@@ -165,3 +176,6 @@ var idck = 0;
  
  
 </script>
+
+
+

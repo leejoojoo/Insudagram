@@ -41,7 +41,7 @@ public class MemberAjaxController {
 		int data = 0;
 		int data2 = 0;
 		data = reg_service.fillHeart(b_code, m_code);
-		data2 = reg_service.updateG_cnt(m_code, b_code);
+		data2 = reg_service.updateG_cnt(b_code);
 		
 		System.out.println("좋아요추가"+data);
 		return data2;
@@ -52,7 +52,7 @@ public class MemberAjaxController {
 		int data = 0;
 		int data2 = 0;
 		data = reg_service.outLineHeart(b_code, m_code);
-		data2 = reg_service.updateG_cnt(m_code, b_code);
+		data2 = reg_service.updateG_cnt(b_code);
 		System.out.println("좋아요삭제"+data);
 		return data2;
 	}
@@ -61,6 +61,13 @@ public class MemberAjaxController {
 	public int insertFollow(int m_code, int m_code2) {
 		int data = 0;
 		data = reg_service.insertFollow(m_code, m_code2);
+		return data;
+	}
+	
+	@RequestMapping(value ="deleteFollow", method = RequestMethod.POST)
+	public int deleteFollow(int m_code, int m_code2) {
+		int data = 0;
+		data = reg_service.deleteFollow(m_code, m_code2);
 		return data;
 	}
 

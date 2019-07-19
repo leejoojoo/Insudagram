@@ -37,7 +37,7 @@ public class MainController {
 		this.mainService = mainService;
 	}
 
-
+	
 	@RequestMapping("/")
 	public String main(Model model,HttpSession session, HttpServletRequest request) {
 	//	public String main(Model model, com.sun.security.auth.UserPrincipal) {

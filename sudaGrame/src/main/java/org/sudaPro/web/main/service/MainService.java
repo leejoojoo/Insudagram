@@ -16,7 +16,7 @@ public interface MainService {
 //	public List<MainComments> getMainComments(int b_code);
 //	public List<MainImg> getMainImg(int b_code);
 	public int setWriteBoard(String realPath, MultipartFile[] multipartFile, String b_content) throws IOException;
-	public int setDeleteBoard(String realPath, String b_code, MultipartFile[] multipartFile) throws IOException;
+	public int setDeleteBoard(String realPath, String b_code, String[] img_img) throws IOException;
 	public List<WriteBoard> getSelectEditBoard(String b_code);
 
 }
