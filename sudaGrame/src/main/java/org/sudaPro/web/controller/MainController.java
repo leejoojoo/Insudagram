@@ -13,6 +13,7 @@ import org.sudaPro.web.board.service.UserRegService;
 import org.sudaPro.web.board.vo.UserVo;
 import org.sudaPro.web.test.dao.TestDao;
 import org.sudaPro.web.main.service.MainService;
+import org.sudaPro.web.myPage.vo.MypageVO;
 
 import com.sun.security.auth.UserPrincipal;
 
@@ -64,8 +65,13 @@ public class MainController {
 	public String getmainAll(Model model,HttpSession session, HttpServletRequest request) {
 		
 		UserVo user = (UserVo)session.getAttribute("userInfo");
+		System.out.println("akfajfljf;lajfa;fj;af"+user.getNickName());
 		System.out.println(user.getM_code());
 		int m_code = user.getM_code();
+		String nickName = user.getNickName();
+//		MypageVO IDAndProfilePicture = mypageService.getIDAndProfilePicture(m_code);
+		model.addAttribute("my_code", user.getM_code() );
+		model.addAttribute("nickName", user.getNickName() );
 		model.addAttribute("main_all", this.mainService.getMainAll(m_code));
 		return "main";
 	}

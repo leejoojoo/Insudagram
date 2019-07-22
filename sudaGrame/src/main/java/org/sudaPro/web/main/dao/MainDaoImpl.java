@@ -46,10 +46,11 @@ public class MainDaoImpl implements MainDao{
 		return session.selectList(namespace + ".selectEditBoard", b_code);
 	};
 	@Override
-	public int setWriteBoard(String realPath, String[] img_img, String b_content) throws IOException{
+	public int setWriteBoard(String realPath, String[] img_img, String b_content, String my_code) throws IOException{
 		int result = 0;
 		Map<String, Object> params = new HashMap<>();
 		params.put("b_content", b_content);
+		params.put("my_code", my_code);
 		session.insert(namespace+".writeBoard", params);
 		for (int i = 0; i < img_img.length; i++) {
 			session.insert(namespace+".writeImg", img_img[i]);
@@ -63,6 +64,31 @@ public class MainDaoImpl implements MainDao{
 		Map<String, Object> params = new HashMap<>();
 		params.put("b_code", b_code);
 		session.delete(namespace+".deleteBoard", params);
+		return result;
+	}
+	@Override
+	public int setEditDeleteBoard(String[] img_img) {
+		int result = 0;
+		for (int i = 0; i < img_img.length; i++) {
+			session.delete(namespace+".editDeleteBoard", img_img[i]);
+		}
+		return result;
+	}
+	@Override
+	public int setSelectEditBoard(String realPath, String[] img_img, String b_content,String b_code) throws IOException {
+		int result = 0;
+		System.out.println("dao       "+b_code);
+		Map<String, Object> params = new HashMap<>();
+		params.put("b_code", b_code);
+		params.put("b_content", b_content);
+		session.update(namespace+".editBoard", params);
+		
+		Map<String, Object> param = new HashMap<>();
+		for (int i = 0; i < img_img.length; i++) {
+			param.put("b_code", b_code);
+			param.put("img_img", img_img[i]);
+			session.insert(namespace+".editImg", param);
+		}
 		return result;
 	}
 }
