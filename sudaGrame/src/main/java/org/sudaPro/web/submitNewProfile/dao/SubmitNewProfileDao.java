@@ -4,7 +4,7 @@ import org.sudaPro.web.myPage.vo.MypageVO;
 
 public interface SubmitNewProfileDao {
 
-	public void updateMyPage(MypageVO MypageVO) throws Exception;
+	public void updateMyPage(MypageVO MypageVO, int m_code) throws Exception;
 	
 }
 

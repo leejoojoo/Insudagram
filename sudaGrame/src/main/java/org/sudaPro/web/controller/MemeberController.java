@@ -63,6 +63,7 @@ public class MemeberController {
 		 user = (UserVo) session.getAttribute("userInfo");
 		int m_code = user.getM_code();
 		String o_password = user.getPassWord();
+		mypageVO.setM_code(m_code);
 		
 		//System.out.println(user.getM_code());
 		//mypageVO.setM_code(m_code);
@@ -71,7 +72,8 @@ public class MemeberController {
 			System.out.println("old_password : "+old_password);
 			System.out.println("new_password : "+new_password);
 			System.out.println("m_password : "+m_password);
-			submitnewpasswordService.updateMyPassword(mypageVO, o_password);
+			mypageVO.setM_password(m_password);
+			submitnewpasswordService.updateMyPassword(mypageVO);
 		}
 		return "redirect:myPage";
 	}
@@ -92,9 +94,9 @@ public class MemeberController {
 	public String submitNewProfile(MypageVO mypageVO,HttpSession session) throws Exception {
 		user = (UserVo) session.getAttribute("userInfo");
 		int m_code = user.getM_code();
-		String o_password = user.getPassWord();
-		//mypageVO.setM_code(m_code);
-		submitnewprofileService.updateMyPage(mypageVO);
+		//String o_password = user.getPassWord();
+		mypageVO.setM_code(m_code);
+		submitnewprofileService.updateMyPage(mypageVO, m_code);
 
 		return "redirect:myPage";
 	}

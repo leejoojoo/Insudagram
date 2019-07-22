@@ -16,7 +16,7 @@ public class SubmitNewPasswordDaoImpl implements SubmitNewPasswordDao{
 	private static String namespace = "org.suda.mapper.SubmitNewPasswordMapper";
 
 	@Override
-	public void updateMyPassword(MypageVO MypageVO, String o_password) throws Exception {
+	public void updateMyPassword(MypageVO MypageVO) throws Exception {
 		session.update(namespace+".updateMyPassword", MypageVO);
 	}
 

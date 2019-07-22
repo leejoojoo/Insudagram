@@ -16,10 +16,10 @@ public class SubmitNewProfileDaoImpl implements SubmitNewProfileDao{
 	private static String namespace = "org.suda.mapper.SubmitNewProfileMapper";
 
 	@Override
-	public void updateMyPage(MypageVO MypageVO) throws Exception {
+	public void updateMyPage(MypageVO MypageVO, int m_code) throws Exception {
 		//System.out.println(m_code +"_---------------------------------------------");
 		session.update(namespace+".updateMyPage", MypageVO);
-		System.out.println("dao m_id :"+MypageVO.getM_id());
+		System.out.println("dao m_id :"+MypageVO.getM_code());
 	}
 
 

@@ -4,6 +4,6 @@ import org.sudaPro.web.myPage.vo.MypageVO;
 
 public interface SubmitNewPasswordService {
 
-	public void updateMyPassword(MypageVO MypageVO, String o_password) throws Exception;
+	public void updateMyPassword(MypageVO MypageVO) throws Exception;
 
 }

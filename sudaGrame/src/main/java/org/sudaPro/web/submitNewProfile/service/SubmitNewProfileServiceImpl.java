@@ -14,9 +14,9 @@ public class SubmitNewProfileServiceImpl implements SubmitNewProfileService{
 	private SubmitNewProfileDaoImpl submitnewprofiledao ;
 
 	@Override
-	public void updateMyPage(MypageVO MypageVO) throws Exception {
-		submitnewprofiledao.updateMyPage(MypageVO);
-		System.out.println("service m_id : "+MypageVO.getM_id());
+	public void updateMyPage(MypageVO MypageVO, int m_code) throws Exception {
+		submitnewprofiledao.updateMyPage(MypageVO, m_code);
+		System.out.println("service m_id : "+MypageVO.getM_code());
 	}
 
 }
