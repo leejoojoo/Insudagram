@@ -71,7 +71,7 @@ public class MemeberController {
 			System.out.println("old_password : "+old_password);
 			System.out.println("new_password : "+new_password);
 			System.out.println("m_password : "+m_password);
-			submitnewpasswordService.updateMyPassword(mypageVO);
+			submitnewpasswordService.updateMyPassword(mypageVO, o_password);
 		}
 		return "redirect:myPage";
 	}
@@ -89,7 +89,10 @@ public class MemeberController {
 	}
 
 	@RequestMapping("submitNewProfile")
-	public String submitNewProfile(MypageVO mypageVO) throws Exception {
+	public String submitNewProfile(MypageVO mypageVO,HttpSession session) throws Exception {
+		user = (UserVo) session.getAttribute("userInfo");
+		int m_code = user.getM_code();
+		String o_password = user.getPassWord();
 		//mypageVO.setM_code(m_code);
 		submitnewprofileService.updateMyPage(mypageVO);
 
@@ -108,9 +111,13 @@ public class MemeberController {
 	@RequestMapping("uploadProfileImage") 
 	public @ResponseBody Map<String, Object> profileImageUpload(
 			@RequestParam("profile") MultipartFile multipartFile, 
-			HttpServletRequest request
+			HttpServletRequest request, HttpSession session
 			)                 
 	          throws Exception {
+		user = (UserVo) session.getAttribute("userInfo");
+		int m_code = user.getM_code();
+		System.out.println("업로드이미지 컨트롤러 : "+m_code);
+		String o_password = user.getPassWord();
 //		MypageVO mypageVO = new MypageVO();
 		Map<String, Object> result  = new HashMap<>();
 //		String realPath = request.getRealPath("/resources/img");
@@ -120,7 +127,7 @@ public class MemeberController {
 	         saveDir.mkdirs();
 //		mypageVO.setM_realPath(realPath);
 //		mypageVO.setM_MultipartFile(multipartFile);
-	      this.profileimageuploadService.profileImageUpload(multipartFile, realPath);
+	      this.profileimageuploadService.profileImageUpload(multipartFile, realPath, m_code);
 	      result.put("result", 1111);
 	     // String realpath = request.getRealPath("/resources/image/");
 	      

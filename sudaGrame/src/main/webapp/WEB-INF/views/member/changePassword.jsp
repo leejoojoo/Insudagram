@@ -22,7 +22,7 @@
 				<div class="M-jxE">
 					<button class="IalUJ " title="프로필 사진 추가">
 						<<img alt="프로필 사진 추가" class="be6sR"
-							src="${myPictureAndId.m_picture }" name="m_picture"> 
+							src="resources/image/${myPictureAndId.m_picture }" name="m_picture"> 
 							<!-- https://instagram.fisb5-1.fna.fbcdn.net/vp/952cda0aaecf724403d1da985c1dcf84/5DA39AF1/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fisb5-1.fna.fbcdn.net -->
 					</button>
 					<div>

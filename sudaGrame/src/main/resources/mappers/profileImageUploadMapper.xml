@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 	<update id="profileImageUpload" parameterType="org.sudaPro.web.myPage.vo.MypageVO"   > -->
 	<update id="profileImageUpload">
 	
-		update member set m_picture = #{value}
-		where m_code = 1
+		update member set m_picture = #{originName}
+		where m_code = #{m_code}
 		 
 		
 	</update>

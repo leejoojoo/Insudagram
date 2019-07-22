@@ -38,7 +38,8 @@ public class ProfileImageUploadServiceImpl implements ProfileImageUploadService{
 //	}
 
 	@Override
-	public int profileImageUpload(MultipartFile multipartFile, String realPath) throws Exception {
+	public int profileImageUpload(MultipartFile multipartFile, String realPath, int m_code) throws Exception {
+			System.out.println("업로드 이미지 서비스 : "+m_code);
 			System.out.println(realPath);
 			String originName = multipartFile.getOriginalFilename();
 			System.out.println(originName);
@@ -46,7 +47,7 @@ public class ProfileImageUploadServiceImpl implements ProfileImageUploadService{
 			File files = new File(realPath,originName);
 			FileCopyUtils.copy(bytes, files);
 			
-			return this.profileimageuploaddao.profileImageUpload(originName);
+			return this.profileimageuploaddao.profileImageUpload(originName, m_code);
 	}
 
 }

@@ -25,12 +25,14 @@ public class ProfileImageUploadDaoImpl implements ProfileImageUploadDao{
 //	}
 
 	@Override
-	public int profileImageUpload(String originName) {
+	public int profileImageUpload(String originName, int m_code) {
+		System.out.println("업로드이미지 dao : "+m_code);
 //		String result = "success";
 		int result = 0;
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("originName", originName);
-		session.update(namespace+".profileImageUpload", originName);
+	    params.put("m_code", m_code);
+		session.update(namespace+".profileImageUpload", params);
 		return result;
 	}
 

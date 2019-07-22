@@ -5,6 +5,6 @@ import org.sudaPro.web.myPage.vo.MypageVO;
 
 public interface ProfileImageUploadService {
 
-	public int profileImageUpload(MultipartFile multipartFile, String realPath) throws Exception;
+	public int profileImageUpload(MultipartFile multipartFile, String realPath, int m_code) throws Exception;
 
 }

@@ -15,8 +15,8 @@ public class SubmitNewPasswordServiceImpl implements SubmitNewPasswordService{
 	private SubmitNewPasswordDaoImpl submitnewpassworddao ;
 
 	@Override
-	public void updateMyPassword(MypageVO MypageVO) throws Exception {
-		submitnewpassworddao.updateMyPassword(MypageVO);
+	public void updateMyPassword(MypageVO MypageVO, String o_password) throws Exception {
+		submitnewpassworddao.updateMyPassword(MypageVO, o_password);
 	}
 	
 	
