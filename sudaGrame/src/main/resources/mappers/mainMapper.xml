@@ -47,18 +47,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board where b_code = ${value}
 	</select>
 	<insert id="writeBoard" >
-		insert into board values((select nvl(max(b_code),0)+1 from board),#{b_content},sysdate,1)
+		insert into board values((select nvl(max(b_code),0)+1 from board),#{b_content},sysdate,#{my_code})
 	</insert>
 	<insert id="writeImg" >
 		insert into img values((select nvl(max(img_code),0)+1 from img),#{img_img},(select nvl(max(b_code),0) from board))
 	</insert>
 	<update id="editBoard">
-		update board set b_content= #{b_content}, b_regdate= #{b_regdate} where b_code = #{b_code}
+		update board set b_content= #{b_content}, b_regdate= sysdate where b_code = #{b_code}
 	</update>
-	<update id="editImg">
-		update img set img_img= #{img_img} where img_code = #{img_code}
-	</update>
+	<insert id="editImg" >
+		insert into img values((select nvl(max(img_code),0)+1 from img), #{img_img}, #{b_code} )
+	</insert>
 	<delete id="deleteBoard">
 		delete from board where b_code= #{b_code}
+	</delete>
+	<delete id="editDeleteBoard">
+		delete from img where img_img= #{img_img}
 	</delete>
 </mapper>

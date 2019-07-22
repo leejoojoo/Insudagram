@@ -49,36 +49,39 @@ public class MainAjaxController {
 		System.out.println(b_code);
 		return this.mainService.getSelectEditBoard(b_code);
 	}
+	@RequestMapping(value="selectEditBoard", method=RequestMethod.POST)
+	public int setSelectEditBoard(@RequestParam("b_content") String b_content, @RequestParam("b_code") String b_code, @RequestParam("editGallery") MultipartFile[] multipartFile, HttpServletRequest request)  throws IOException{
+//		File saveDir = new File(realPath);
+//		if (!saveDir.exists())
+//			saveDir.mkdirs();
+		System.out.println(b_code);
+		return this.mainService.setSelectEditBoard(realPath,multipartFile, b_content,b_code);
+	}
 	
 	@RequestMapping(value="deleteBoard", method=RequestMethod.POST)
 	public int setDeleteBoard(@RequestParam("b_code") String b_code, @RequestParam("deleteGallery") String[] img_img, HttpServletRequest request) throws IOException {
-		System.out.println("hi");
+		System.out.println("deleteBOARDhi");
 		System.out.println(b_code);
 		System.out.println(realPath);
 //		realPath += "/resources/image";
 		return this.mainService.setDeleteBoard(realPath,b_code,img_img);
 	}
 	
+	@RequestMapping(value="editDeleteBoard", method=RequestMethod.POST)
+	public int setDeleteBoard(@RequestParam("editdelBoard") String[] img_img, HttpServletRequest request) throws IOException {
+		System.out.println("deleteBOARDhi");
+		System.out.println(realPath);
+		return this.mainService.setEditDeleteBoard(realPath,img_img);
+	}
+	
 	@RequestMapping(value="writeBoard", method=RequestMethod.POST)
-	public int setWriteBoard(@RequestParam("b_content") String b_content, @RequestParam("writeGallery") MultipartFile[] multipartFile, HttpServletRequest request) throws IOException {
-		System.out.println("hi");
-//		realPath += "/resources/image";
+	public int setWriteBoard(@RequestParam("b_content") String b_content, @RequestParam("my_code") String my_code, @RequestParam("writeGallery") MultipartFile[] multipartFile, HttpServletRequest request) throws IOException {
 		System.out.println(realPath);
 		File saveDir = new File(realPath);
 		if (!saveDir.exists())
 			saveDir.mkdirs();
 		
-//		String saveDirectory = "C:\Users\SIST167\git\SudaGram\sudaGrame\src\main\webapp\resources\img";
-//		String realPath = request.getRealPath("/resources/image");
-		
-//		WriteBoard writeBoard = new WriteBoard();
-//		writeBoard.setB_content(b_content);
-//		writeBoard.setM_code(1);
-		
-//		List<MultipartFile>file = request.getFiles("picture");
-//		System.out.println(b_content);
-		
-		return this.mainService.setWriteBoard(realPath,multipartFile, b_content);
+		return this.mainService.setWriteBoard(realPath,multipartFile, b_content, my_code);
 	}
 	
 	
